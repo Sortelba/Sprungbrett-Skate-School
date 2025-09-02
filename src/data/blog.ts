@@ -87,6 +87,6 @@ In unserem neuen Video im "Fortgeschrittenen"-Dojo gehen wir die Bewegung Schrit
    Fang das Board mit dem hinteren Fuß ab, lande mit beiden Füßen über den Schrauben und roll entspannt weiter.
 
 Wir zeigen euch auch die häufigsten Fehler und wie ihr sie vermeiden könnt. Schaut euch das Video an und schnappt euch euer Board. Viel Erfolg beim Üben!`,
-    videoId: 'fP5-9z08i_M',
+    videoId: 'https://www.youtube.com/watch?v=c6zsdJsdXb4&t=77s&ab_channel=sortelba',
   },
 ];
