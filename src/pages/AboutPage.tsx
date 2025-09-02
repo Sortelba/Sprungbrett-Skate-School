@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 
 const AboutPage: React.FC = () => {
@@ -9,8 +10,8 @@ const AboutPage: React.FC = () => {
         <div className="md:col-span-1">
           <img 
             src="/images/steffen-profile.jpg" 
-            alt="Instructor" 
-            className="rounded-full mx-auto w-48 h-48 md:w-full md:h-auto object-cover border-4 border-brand-green"
+            alt="Instructor Steffen performing a skateboard trick" 
+            className="rounded-lg w-full h-auto object-cover border-4 border-brand-green shadow-lg"
           />
         </div>
         <div className="md:col-span-2 space-y-4">
