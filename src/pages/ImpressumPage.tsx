@@ -1,3 +1,5 @@
+// Diese Seite zeigt das Impressum an.
+// Es ist gesetzlich vorgeschrieben und enthält wichtige rechtliche Informationen über den Betreiber der Webseite.
 
 import React from 'react';
 
@@ -8,6 +10,9 @@ const ImpressumPage: React.FC = () => {
         <span className="text-brand-green">IMPRESSUM</span>
       </h1>
       <div className="bg-gray-800 p-8 rounded-lg shadow-2xl space-y-8 text-gray-300">
+        
+        {/* --- WICHTIG: DEINE DATEN HIER EINTRAGEN --- */}
+        {/* Ersetze die Platzhalter in eckigen Klammern durch deine eigenen, korrekten Informationen. */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-4">Angaben gemäß § 5 TMG</h2>
           <p>
@@ -26,6 +31,9 @@ const ImpressumPage: React.FC = () => {
           </p>
         </section>
 
+        {/* --- RECHTLICHE TEXTE (Haftungsausschluss) --- */}
+        {/* Diese Texte sind Standardformulierungen. Es wird empfohlen, sie von einem Anwalt prüfen zu lassen, */}
+        {/* um sicherzustellen, dass sie für dein spezifisches Projekt passend sind. */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-4">Haftungsausschluss (Disclaimer)</h2>
           <div className="space-y-4">

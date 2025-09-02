@@ -1,3 +1,5 @@
+// Diese Seite zeigt die Allgemeinen Geschäftsbedingungen (AGB).
+// Sie regeln die vertraglichen Beziehungen zwischen dir und deinen Kunden.
 
 import React from 'react';
 
@@ -8,6 +10,12 @@ const AGBPage: React.FC = () => {
         ALLGEMEINE <span className="text-brand-green">GESCHÄFTSBEDINGUNGEN</span>
       </h1>
       <div className="bg-gray-800 p-8 rounded-lg shadow-2xl space-y-8 text-gray-300">
+        
+        {/* --- HINWEIS --- */}
+        {/* Dies sind Beispiel-AGB. Es ist sehr wichtig, dass du diese Texte an dein Geschäftsmodell anpasst */}
+        {/* und sie idealerweise von einem Anwalt prüfen lässt, um rechtlich auf der sicheren Seite zu sein. */}
+        {/* Ersetze die Platzhalter in eckigen Klammern. */}
+
         <section>
           <h2 className="text-2xl font-bold text-white mb-4">§ 1 Geltungsbereich</h2>
           <p>

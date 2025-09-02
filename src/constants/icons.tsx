@@ -1,10 +1,16 @@
+// Diese Datei dient als zentrale Bibliothek für alle SVG-Icons, die in der Anwendung verwendet werden.
+// Das macht es einfach, Icons wiederzuverwenden und an einem Ort zu verwalten.
+// Um ein neues Icon hinzuzufügen, kopiere eine der bestehenden Komponenten,
+// benenne sie um und ersetze den SVG-Code im Inneren.
+
 import React from 'react';
 
-// Props for all icon components
+// Ein gemeinsames 'interface' für alle Icons, damit sie die gleichen Props (z.B. 'className') akzeptieren.
 interface IconProps {
   className?: string;
 }
 
+// --- TIKTOK ICON ---
 export const TikTokIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -16,12 +22,13 @@ export const TikTokIcon: React.FC<IconProps> = (props) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    {...props}
+    {...props} // {...props} gibt alle übergebenen Props (wie className) an das SVG-Element weiter.
   >
     <path d="M9 12a4 4 0 1 0 4 4v-12a5 5 0 0 0 5 5" />
   </svg>
 );
 
+// --- YOUTUBE ICON ---
 export const YouTubeIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -40,6 +47,7 @@ export const YouTubeIcon: React.FC<IconProps> = (props) => (
   </svg>
 );
 
+// --- INSTAGRAM ICON ---
 export const InstagramIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -59,6 +67,7 @@ export const InstagramIcon: React.FC<IconProps> = (props) => (
   </svg>
 );
 
+// --- SHOP ICON (WARENKORB) ---
 export const ShopIcon: React.FC<IconProps> = (props) => (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
@@ -78,6 +87,7 @@ export const ShopIcon: React.FC<IconProps> = (props) => (
     </svg>
 );
 
+// --- LIFEBOY (LB) ICON (Text-basiertes SVG) ---
 export const LBIcon: React.FC<IconProps> = (props) => (
     <svg 
         viewBox="0 0 24 24" 
@@ -99,6 +109,7 @@ export const LBIcon: React.FC<IconProps> = (props) => (
     </svg>
 );
 
+// --- WEBSITE ICON (LINK) ---
 export const WebsiteIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

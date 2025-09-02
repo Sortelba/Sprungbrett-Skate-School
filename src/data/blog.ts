@@ -1,20 +1,33 @@
+// Diese Datei ist die zentrale Datenquelle für alle Blog-Beiträge.
+// Wenn du einen Beitrag hinzufügen, bearbeiten oder löschen möchtest, tust du das hier.
+
+// Das 'interface' definiert die Struktur für ein Blog-Post-Objekt.
 export interface BlogPost {
-  id: number;
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  content: string;
-  imageUrl?: string;
-  videoId?: string;
-  instagramUrl?: string;
-  websiteUrl?: string;
+  id: number;           // Eindeutige Nummer für jeden Beitrag. Nicht doppelt vergeben!
+  slug: string;         // Eindeutiger Text für die URL (z.B. /blog/mein-erster-beitrag). Nur Kleinbuchstaben, Zahlen und Bindestriche verwenden.
+  title: string;        // Die Überschrift des Beitrags.
+  date: string;         // Das Veröffentlichungsdatum.
+  excerpt: string;      // Eine kurze Zusammenfassung, die auf der Blog-Übersichtsseite angezeigt wird.
+  content: string;      // Der vollständige Inhalt des Beitrags. Mit Backticks (`) kannst du mehrzeiligen Text schreiben.
+  imageUrl?: string;    // Optional: Pfad zu einem Bild für den Beitrag (im 'public/images'-Ordner).
+  videoId?: string;     // Optional: ID oder URL eines YouTube-Videos, das im Beitrag angezeigt werden soll.
+  instagramUrl?: string;// Optional: Link zu einem Instagram-Profil, das zum Beitrag gehört.
+  websiteUrl?: string;  // Optional: Link zu einer externen Webseite.
 }
 
+// 'allPosts' ist eine Liste (Array) von Blog-Post-Objekten.
 export const allPosts: BlogPost[] = [
+  // --- ANLEITUNG: NEUEN BLOG-BEITRAG HINZUFÜGEN ---
+  // 1. Kopiere einen kompletten Beitrags-Block (von `{` bis `},`).
+  // 2. Füge ihn am Anfang der Liste ein (nach `[` und vor dem ersten `{`).
+  // 3. Ändere die 'id' auf die nächste freie Nummer.
+  // 4. Passe 'slug', 'title', 'date', 'excerpt' und 'content' an.
+  // 5. Füge bei Bedarf 'imageUrl', 'videoId' usw. hinzu oder entferne sie.
+  // 6. Speichere die Datei. Der neue Beitrag erscheint automatisch im Blog.
+
   {
     id: 1,
-    slug: 'ROLLBRETT e.V. Karlsruhe',
+    slug: 'rollbrett-ev-karlsruhe',
     title: 'Karlsruhe und Umgebung!!',
     date: '28. Juli 2024',
     excerpt: 'Rollbrett e.V. Karlsruhe: Die Skate-Community, die mehr bewegt als nur Boards – jetzt mehr erfahren!',
@@ -64,9 +77,8 @@ In unserem neuen Video im "Fortgeschrittenen"-Dojo gehen wir die Bewegung Schrit
 4. Das Fangen und Landen: Wie man das Board wieder unter die Füße bekommt.
 
 Wir zeigen euch auch die häufigsten Fehler und wie ihr sie vermeiden könnt. Schaut euch das Video an und schnappt euch euer Board. Viel Erfolg beim Üben!`,
-    videoId: 'gW12-m3_guE', // Example Kickflip Video
+    videoId: 'gW12-m3_guE', // Beispiel Kickflip Video ID
   },
-  // FIX: Corrected syntax errors, content, title, and videoId for the heelflip post.
   {
     id: 4,
     slug: 'heelflip-tutorial-video',
@@ -93,6 +105,6 @@ In unserem neuen Video im "Fortgeschrittenen"-Dojo gehen wir die Bewegung Schrit
    Fang das Board mit dem hinteren Fuß ab, lande mit beiden Füßen über den Schrauben und roll entspannt weiter.
 
 Wir zeigen euch auch die häufigsten Fehler und wie ihr sie vermeiden könnt. Schaut euch das Video an und schnappt euch euer Board. Viel Erfolg beim Üben!`,
-    videoId: 'https://www.youtube.com/watch?v=c6zsdJsdXb4&t=77s&ab_channel=sortelba',
+    videoId: 'c6zsdJsdXb4', // Bereinigte Video ID für das Heelflip Tutorial
   },
 ];

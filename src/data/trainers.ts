@@ -1,17 +1,31 @@
+// Diese Datei ist die zentrale Datenquelle für alle Trainer.
+// Wenn du einen Trainer hinzufügen, bearbeiten oder entfernen möchtest, musst du das hier tun.
 
+// Das 'interface' definiert die Struktur für ein Trainer-Objekt.
+// Jeder Trainer MUSS diese Felder haben.
 export interface Trainer {
-  id: number;
-  name: string;
-  location: string;
-  bio: string;
-  detailedBio: string;
-  imageUrl: string;
-  instagramUrl?: string;
-  isFictional?: boolean;
-  isCertified?: boolean;
+  id: number;              // Eindeutige Nummer für jeden Trainer. Wichtig: Nicht doppelt vergeben!
+  name: string;            // Name des Trainers.
+  location: string;        // Ort, an dem der Trainer unterrichtet.
+  bio: string;             // Kurze Biografie für die Übersichtsseite.
+  detailedBio: string;     // Ausführliche Biografie für die Detailseite.
+  imageUrl: string;        // Pfad zum Bild des Trainers. Bilder sollten im 'public/images'-Ordner liegen.
+  instagramUrl?: string;   // Optional: Link zum Instagram-Profil.
+  isFictional?: boolean;   // Optional: Kennzeichen für fiktive Beispiel-Trainer.
+  isCertified?: boolean;   // Optional: Kennzeichen für DOSB-lizenzierte Trainer.
 }
 
+// 'allTrainers' ist eine Liste (Array) von Trainer-Objekten.
+// Die Webseite liest diese Liste aus und erstellt daraus automatisch die Trainer-Karten.
 export const allTrainers: Trainer[] = [
+  
+  // --- ANLEITUNG: NEUEN TRAINER HINZUFÜGEN ---
+  // 1. Kopiere einen kompletten Trainer-Block (von `{` bis `},`).
+  // 2. Füge ihn am Ende der Liste ein (vor der schließenden `];`).
+  // 3. Ändere die 'id' auf die nächste freie Nummer.
+  // 4. Fülle alle anderen Felder mit den Informationen des neuen Trainers.
+  // 5. Speichere die Datei. Der neue Trainer erscheint automatisch auf der Webseite.
+  
   {
     id: 1,
     name: 'Steffen',
@@ -20,7 +34,7 @@ export const allTrainers: Trainer[] = [
     detailedBio: 'Steffen ist seit über 20 Jahren auf dem Skateboard und hat in dieser Zeit unzählige Wettbewerbe bestritten und an diversen Videoprojekten mitgewirkt. Seine Leidenschaft ist es, sein Wissen und seine Begeisterung für das Skateboarding an die nächste Generation weiterzugeben. Er ist spezialisiert auf die Grundlagen, kann aber auch fortgeschrittenen Skatern helfen, ihr Trick-Repertoire zu erweitern.',
     imageUrl: '/images/steffen-trainer-picture.jpg',
     instagramUrl: 'https://instagram.com/sortelba',
-    isCertified: false,
+    isCertified: false, // Dieser Trainer hat keine offizielle DOSB-Lizenz.
   },
   {
     id: 2,
@@ -33,6 +47,7 @@ export const allTrainers: Trainer[] = [
     isFictional: true,
     isCertified: false,
   },
+  // ... (weitere fiktive Trainer)
   {
     id: 3,
     name: 'Julia',
@@ -121,6 +136,9 @@ export const allTrainers: Trainer[] = [
     isFictional: true,
     isCertified: false,
   },
+
+  // --- START: DOSB-LIZENZIERTE TRAINER ---
+  // Diese Trainer sind mit `isCertified: true` markiert und erhalten ein spezielles Siegel.
   {
     id: 11,
     name: 'Christian Pelz',
@@ -141,6 +159,7 @@ export const allTrainers: Trainer[] = [
     isFictional: false,
     isCertified: true,
   },
+  // ... (weitere zertifizierte Trainer)
   {
     id: 13,
     name: 'Philip Schütz',
