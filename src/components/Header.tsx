@@ -40,12 +40,6 @@ const Header: React.FC = () => {
             >
               Trainer Finden
             </NavLink>
-             <NavLink
-              to="/certified-trainers"
-              className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + ' text-lg font-semibold'}
-            >
-              Geprüfte Trainer
-            </NavLink>
             <NavLink
               to="/dojo"
               className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + ' text-lg font-semibold'}
@@ -110,13 +104,6 @@ const Header: React.FC = () => {
               className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + mobileLinkClass}
             >
               Trainer Finden
-            </NavLink>
-            <NavLink
-              to="/certified-trainers"
-              onClick={closeMenu}
-              className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + mobileLinkClass}
-            >
-              Geprüfte Trainer
             </NavLink>
             <NavLink
               to="/dojo"

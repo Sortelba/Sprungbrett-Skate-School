@@ -14,7 +14,6 @@ import DojoBeginnerPage from './pages/DojoBeginnerPage';
 import DojoAdvancedPage from './pages/DojoAdvancedPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
-import CertifiedTrainersPage from './pages/CertifiedTrainersPage';
 
 const App: React.FC = () => {
   return (
@@ -27,7 +26,6 @@ const App: React.FC = () => {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/trainers" element={<TrainersPage />} />
             <Route path="/trainers/:trainerId" element={<TrainerDetailPage />} />
-            <Route path="/certified-trainers" element={<CertifiedTrainersPage />} />
             <Route path="/dojo" element={<DojoPage />} />
             <Route path="/dojo/beginner" element={<DojoBeginnerPage />} />
             <Route path="/dojo/advanced" element={<DojoAdvancedPage />} />

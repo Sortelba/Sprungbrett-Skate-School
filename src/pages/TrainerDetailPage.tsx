@@ -50,6 +50,14 @@ const TrainerDetailPage: React.FC = () => {
                 </a>
             )}
           </div>
+           {trainer.isCertified && (
+            <div className="inline-flex items-center bg-brand-green text-gray-900 text-sm font-bold px-3 py-1 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>DOSB-lizenzierter Trainer</span>
+            </div>
+          )}
           <p className="text-brand-green font-semibold text-lg">{trainer.location}</p>
           <p className="text-gray-300 whitespace-pre-wrap">{trainer.detailedBio}</p>
           <div className="pt-4">
