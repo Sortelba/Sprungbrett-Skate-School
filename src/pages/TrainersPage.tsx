@@ -2,6 +2,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { allTrainers } from '../data/trainers';
+import { InstagramIcon } from '../constants/icons';
 
 const TrainersPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -47,13 +48,27 @@ const TrainersPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredTrainers.map((trainer) => (
             <Link to={`/trainers/${trainer.id}`} key={trainer.id} className="block bg-gray-800 rounded-lg overflow-hidden group transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <img
-                src={trainer.imageUrl}
-                alt={trainer.name}
-                className="w-full h-64 object-cover"
-              />
+              <div className="relative">
+                <img
+                  src={trainer.imageUrl}
+                  alt={trainer.name}
+                  className="w-full h-64 object-cover"
+                />
+                {trainer.instagramUrl && (
+                    <a
+                      href={trainer.instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="absolute bottom-4 right-4 bg-gray-900 bg-opacity-70 p-2 rounded-full text-white hover:text-brand-green transform hover:scale-110 transition-all duration-200"
+                      aria-label={`${trainer.name}'s Instagram`}
+                    >
+                      <InstagramIcon className="h-6 w-6" />
+                    </a>
+                )}
+              </div>
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-white">{trainer.name}</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">{trainer.name}</h3>
                 <p className="text-brand-green font-semibold mb-3">{trainer.location}</p>
                 <p className="text-gray-400 text-sm">{trainer.bio}</p>
               </div>

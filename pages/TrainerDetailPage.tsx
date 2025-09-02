@@ -2,6 +2,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { allTrainers } from '../data/trainers';
+import { InstagramIcon } from '../constants/icons';
 
 const TrainerDetailPage: React.FC = () => {
   const { trainerId } = useParams<{ trainerId: string }>();
@@ -35,7 +36,20 @@ const TrainerDetailPage: React.FC = () => {
           />
         </div>
         <div className="md:col-span-2 space-y-4">
-          <h1 className="text-4xl font-black text-white tracking-tighter">{trainer.name}</h1>
+          <div className="flex items-center space-x-4">
+            <h1 className="text-4xl font-black text-white tracking-tighter">{trainer.name}</h1>
+            {trainer.instagramUrl && (
+                <a
+                href={trainer.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-brand-green transition-colors duration-200 transform hover:scale-110"
+                aria-label={`${trainer.name}'s Instagram`}
+                >
+                <InstagramIcon className="h-8 w-8" />
+                </a>
+            )}
+          </div>
           <p className="text-brand-green font-semibold text-lg">{trainer.location}</p>
           <p className="text-gray-300 whitespace-pre-wrap">{trainer.detailedBio}</p>
           <div className="pt-4">
