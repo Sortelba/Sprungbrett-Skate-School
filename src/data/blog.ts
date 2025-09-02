@@ -76,7 +76,7 @@ Wir zeigen euch auch die häufigsten Fehler und wie ihr sie vermeiden könnt. Sc
 4. **Starte klein:** Niemand erwartet von dir, dass du sofort die größte Rampe runterfährst. Such dir eine kleine, ruhige Ecke und übe dort die Grundlagen.
 
 5. **Sei respektvoll und hab Spaß:** Jeder hat mal angefangen. Sei freundlich, frag nach, wenn du unsicher bist, und vor allem: hab Spaß dabei! Darum geht es beim Skaten.`,
-    imageUrl: '/images/rollbrett.ev.jpg',
+    imageUrl: '/images/rollbrett-ev.jpg',
   },
   {
     id: 5,
