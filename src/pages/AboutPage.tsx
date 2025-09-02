@@ -8,7 +8,7 @@ const AboutPage: React.FC = () => {
       <div className="grid md:grid-cols-3 gap-8 items-center bg-gray-800 p-8 rounded-lg shadow-2xl">
         <div className="md:col-span-1">
           <img 
-            src="https://picsum.photos/400/400?random=1" 
+            src="/images/steffen-profile.jpg" 
             alt="Instructor" 
             className="rounded-full mx-auto w-48 h-48 md:w-full md:h-auto object-cover border-4 border-brand-green"
           />
