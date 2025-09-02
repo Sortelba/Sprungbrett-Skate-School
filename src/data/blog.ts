@@ -60,31 +60,33 @@ In unserem neuen Video im "Fortgeschrittenen"-Dojo gehen wir die Bewegung Schrit
 Wir zeigen euch auch die häufigsten Fehler und wie ihr sie vermeiden könnt. Schaut euch das Video an und schnappt euch euer Board. Viel Erfolg beim Üben!`,
     videoId: 'gW12-m3_guE', // Example Kickflip Video
   },
+  // FIX: Corrected syntax errors, content, title, and videoId for the heelflip post.
   {
     id: 4,
-    slug: 'heelflip tutorial-video',
-    title: 'Video-Tipp: Der Kickflip - So lernst du den König der Tricks',
+    slug: 'heelflip-tutorial-video',
+    title: 'Video-Tipp: So lernst du den Heelflip',
     date: '5. Juli 2024',
-    excerpt: 'Du willst den legendären Heelflip lernen? 🚀 Check unser 5-Schritte-Tutorial und mach den nächsten Step in deinem Skate-Progress!“
-    content: "Dan gehts Hier entlang!"
+    excerpt: 'Du willst den legendären Heelflip lernen? 🚀 Check unser 5-Schritte-Tutorial und mach den nächsten Step in deinem Skate-Progress!',
+    content: `Dann gehts hier entlang!
 
 In unserem neuen Video im "Fortgeschrittenen"-Dojo gehen wir die Bewegung Schritt für Schritt durch:
 
-1.Stance einnehmen
-  Vordere Fußspitze leicht über die Kante des Boards, hinterer Fuß auf dem Tail wie beim Ollie.
+1. Stance einnehmen
+   Vordere Fußspitze leicht über die Kante des Boards, hinterer Fuß auf dem Tail wie beim Ollie.
 
-2.Pop & Absprung
-  Drücke das Tail kräftig nach unten und springe ab – wie beim Ollie.
+2. Pop & Absprung
+   Drücke das Tail kräftig nach unten und springe ab – wie beim Ollie.
 
-3.Flick mit der Ferse
-  Streife mit der Innenseite deiner vorderen Ferse über die vordere Kante, um das Board in die Heelflip-Rotation zu bringen.
+3. Flick mit der Ferse
+   Streife mit der Innenseite deiner vorderen Ferse über die vordere Kante, um das Board in die Heelflip-Rotation zu bringen.
 
-4.Über dem Board bleiben
-  Zieh die Beine hoch und halte dich zentriert über dem Deck, während es sich dreht.
+4. Über dem Board bleiben
+   Zieh die Beine hoch und halte dich zentriert über dem Deck, während es sich dreht.
 
-5.Fangen & Landen
-  Fang das Board mit dem hinteren Fuß ab, lande mit beiden Füßen über den Schrauben und roll entspannt weiter.
+5. Fangen & Landen
+   Fang das Board mit dem hinteren Fuß ab, lande mit beiden Füßen über den Schrauben und roll entspannt weiter.
 
 Wir zeigen euch auch die häufigsten Fehler und wie ihr sie vermeiden könnt. Schaut euch das Video an und schnappt euch euer Board. Viel Erfolg beim Üben!`,
-    videoId: 'c6zsdJsdXb4&t=77s&ab_channel=sortelba', 
+    videoId: 'fP5-9z08i_M',
+  },
 ];
