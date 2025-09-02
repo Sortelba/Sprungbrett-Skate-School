@@ -5,28 +5,28 @@
   "type": "module",
   "// --- SCRIPTS ---": "Diese Befehle kannst du im Terminal ausführen, z.B. 'npm run dev' zum Starten des Entwicklungsservers.",
   "scripts": {
-    "dev": "vite",        // Startet den Entwicklungsserver
-    "build": "vite build",    // Erstellt die fertige Version der Webseite für das Hochladen
-    "lint": "tsc --noEmit", // Überprüft den TypeScript-Code auf Fehler, ohne ihn zu kompilieren
-    "preview": "vite preview" // Startet eine lokale Vorschau der gebauten Webseite
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "tsc --noEmit",
+    "preview": "vite preview"
   },
   "// --- DEPENDENCIES ---": "Dies sind die JavaScript-Bibliotheken, die für den Betrieb der Webseite notwendig sind.",
   "dependencies": {
-    "@emailjs/browser": "^4.3.3", // Für das Senden von E-Mails über das Kontaktformular
-    "react": "^18.2.0",             // Die Kern-Bibliothek für den Aufbau der Benutzeroberfläche
-    "react-dom": "^18.2.0",          // Verbindet React mit dem Browser
-    "react-router-dom": "^6.22.3"   // Ermöglicht die Navigation zwischen den Seiten (Routing)
+    "@emailjs/browser": "^4.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1"
   },
   "// --- DEV-DEPENDENCIES ---": "Dies sind Werkzeuge, die nur für die Entwicklung benötigt werden, nicht für die fertige Webseite.",
   "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.3",       // Das CSS-Framework für das Styling
-    "typescript": "^5.2.2",       // Fügt dem JavaScript Typ-Sicherheit hinzu
-    "vite": "^5.2.0"              // Das Build-Tool, das den Entwicklungsserver bereitstellt und die Seite baut
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3"
   },
   "// --- ENGINES ---": "Gibt die empfohlene Node.js-Version für dieses Projekt an. Wichtig für Hosting-Plattformen wie Netlify.",
   "engines": {
