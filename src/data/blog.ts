@@ -66,7 +66,7 @@ Wir zeigen euch auch die häufigsten Fehler und wie ihr sie vermeiden könnt. Sc
     title: 'Video-Tipp: Der Kickflip - So lernst du den König der Tricks',
     date: '5. Juli 2024',
     excerpt: 'Du willst den legendären Heelflip lernen? 🚀 Check unser 5-Schritte-Tutorial und mach den nächsten Step in deinem Skate-Progress!“
-    content: `
+    content: "Dan gehts Hier entlang!"
 
 In unserem neuen Video im "Fortgeschrittenen"-Dojo gehen wir die Bewegung Schritt für Schritt durch:
 
