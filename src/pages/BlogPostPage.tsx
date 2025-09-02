@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { allPosts } from '../data/blog';
 import VideoEmbed from '../components/VideoEmbed';
+import { InstagramIcon, WebsiteIcon } from '../constants/icons';
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -35,14 +36,33 @@ const BlogPostPage: React.FC = () => {
             className="w-full h-auto rounded-lg mb-8 shadow-lg border-2 border-gray-700"
           />
         )}
+        
+        <h1 className="text-4xl font-black text-white tracking-tighter mb-4">{post.title}</h1>
+        <p className="text-sm text-gray-500 mb-6">{post.date}</p>
+
+        {(post.websiteUrl || post.instagramUrl) && (
+          <div className="flex items-center space-x-4 mb-8">
+            {post.websiteUrl && (
+              <a href={post.websiteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2 bg-gray-700 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600 transition-all duration-300">
+                <WebsiteIcon className="h-5 w-5" />
+                <span>Website</span>
+              </a>
+            )}
+            {post.instagramUrl && (
+              <a href={post.instagramUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2 bg-gray-700 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600 transition-all duration-300">
+                <InstagramIcon className="h-5 w-5" />
+                <span>Instagram</span>
+              </a>
+            )}
+          </div>
+        )}
+
         {post.videoId && (
             <div className="my-8 max-w-3xl mx-auto">
                 <VideoEmbed videoId={post.videoId} title={post.title} />
             </div>
         )}
 
-        <h1 className="text-4xl font-black text-white tracking-tighter mb-4">{post.title}</h1>
-        <p className="text-sm text-gray-500 mb-6">{post.date}</p>
         <div className="text-gray-300 space-y-4 whitespace-pre-wrap text-lg leading-relaxed">
           {post.content}
         </div>

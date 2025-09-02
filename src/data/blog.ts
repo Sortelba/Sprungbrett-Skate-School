@@ -7,6 +7,8 @@ export interface BlogPost {
   content: string;
   imageUrl?: string;
   videoId?: string;
+  instagramUrl?: string;
+  websiteUrl?: string;
 }
 
 export const allPosts: BlogPost[] = [
@@ -15,15 +17,19 @@ export const allPosts: BlogPost[] = [
     slug: 'skate-contest-ankuendigung',
     title: 'Ankündigung: Großer Skate Contest im Otto-Dullenkopf-Park',
     date: '28. Juli 2024',
-    excerpt: 'Seid dabei, wenn die besten lokalen Skater ihr Können unter Beweis stellen! Wir veranstalten einen großen Contest mit tollen Preisen, Musik und guter Stimmung. Melde dich jetzt an oder komm einfach zum Zuschauen vorbei.',
-    content: `Markiert euch den Kalender! Am 15. August findet unser bisher größter Skate Contest im Otto-Dullenkopf-Park in Karlsruhe statt. 
+    excerpt: 'Rollbrett e.V. Karlsruhe: Die Skate-Community, die mehr bewegt als nur Boards – jetzt mehr erfahren!',
+    content: `Rollbrett e.V. Karlsruhe – mehr als nur ein Skateverein
 
-Wir haben Kategorien für Anfänger, Fortgeschrittene und auch eine "Best Trick" Session, bei der jeder mitmachen kann. Es gibt Sachpreise von unseren Sponsoren wie Lifeboy Skate Shop und fette Pokale für die Gewinner.
+Wer in Karlsruhe skatet, kommt am Rollbrett e.V. kaum vorbei. Der Verein setzt sich seit Jahren für die Förderung der lokalen Skateszene ein – mit viel Leidenschaft, Herzblut und einem echten Gemeinschaftsgefühl.
 
-Für Musik und Verpflegung ist gesorgt. Bringt eure Freunde und Familie mit für einen unvergesslichen Tag voller Skateboarding und Community-Vibes. 
+Ob beim Bau und Erhalt von Skateparks, bei Contests oder Workshops für Kinder und Jugendliche: Der Rollbrett e.V. schafft Orte, an denen Skater:innen zusammenkommen, voneinander lernen und ihre Leidenschaft teilen können.
 
-Die Anmeldung ist ab sofort über unsere Kontaktseite möglich. Die Teilnahmegebühr beträgt 5€. Zuschauer sind natürlich kostenlos willkommen! Wir freuen uns auf euch!`,
-    imageUrl: '/images/rollbrett-ev.jpg',
+Besonders wichtig ist dabei die Idee, die Kultur des Skateboardings lebendig zu halten. Es geht nicht nur um Tricks und Technik, sondern auch um Kreativität, Freiheit und den Spaß, gemeinsam Zeit auf dem Board zu verbringen.
+
+Wenn du also aus Karlsruhe kommst oder einfach Lust hast, Teil einer aktiven und offenen Skate-Community zu werden, lohnt es sich definitiv, beim Rollbrett e.V. vorbeizuschauen.`,
+    imageUrl: '/images/rollbrett-ev.jpg' ,
+    websiteUrl: 'https://www.rollbrett-ev.de/',
+    instagramUrl: 'https://www.instagram.com/rollbrett_ev/',
   },
   {
     id: 2,

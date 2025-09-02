@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { allPosts } from '../data/blog';
+import { InstagramIcon, WebsiteIcon } from '../constants/icons';
 
 const BlogPage: React.FC = () => {
   return (
@@ -22,12 +23,26 @@ const BlogPage: React.FC = () => {
             <p className="text-gray-300 mb-6 italic border-l-4 border-gray-700 bg-black/25 p-4 rounded-lg">
               {post.excerpt}
             </p>
-            <Link 
-              to={`/blog/${post.slug}`} 
-              className="font-bold text-brand-green hover:text-white transition-colors duration-300"
-            >
-              Mehr lesen &rarr;
-            </Link>
+            <div className="flex justify-between items-center">
+              <Link 
+                to={`/blog/${post.slug}`} 
+                className="font-bold text-brand-green hover:text-white transition-colors duration-300"
+              >
+                Mehr lesen &rarr;
+              </Link>
+              <div className="flex items-center space-x-4">
+                {post.websiteUrl && (
+                  <a href={post.websiteUrl} target="_blank" rel="noopener noreferrer" aria-label="Website" className="text-gray-400 hover:text-brand-green transition-colors duration-200">
+                    <WebsiteIcon className="h-6 w-6" />
+                  </a>
+                )}
+                {post.instagramUrl && (
+                  <a href={post.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-400 hover:text-brand-green transition-colors duration-200">
+                    <InstagramIcon className="h-6 w-6" />
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
         ))}
       </div>
