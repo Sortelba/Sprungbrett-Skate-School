@@ -23,6 +23,7 @@ Wir haben Kategorien für Anfänger, Fortgeschrittene und auch eine "Best Trick"
 Für Musik und Verpflegung ist gesorgt. Bringt eure Freunde und Familie mit für einen unvergesslichen Tag voller Skateboarding und Community-Vibes. 
 
 Die Anmeldung ist ab sofort über unsere Kontaktseite möglich. Die Teilnahmegebühr beträgt 5€. Zuschauer sind natürlich kostenlos willkommen! Wir freuen uns auf euch!`,
+    imageUrl: '/images/rollbrett-ev.jpg',
   },
   {
     id: 2,
@@ -61,39 +62,29 @@ Wir zeigen euch auch die häufigsten Fehler und wie ihr sie vermeiden könnt. Sc
   },
   {
     id: 4,
-    slug: '5-tipps-fuer-den-ersten-skatepark-besuch',
-    title: '5 Tipps für deinen ersten Skatepark-Besuch',
-    date: '25. Juni 2024',
-    excerpt: 'Der erste Besuch im Skatepark kann einschüchternd sein. Mit diesen 5 einfachen Tipps wird dein erster Besuch ein voller Erfolg und du wirst eine Menge Spaß haben.',
-    content: `Der Skatepark ist ein großartiger Ort, um neue Leute kennenzulernen und besser zu werden. Aber gerade am Anfang kann es etwas überwältigend sein. Hier sind 5 Tipps, die dir helfen:
+    slug: 'heelflip tutorial-video',
+    title: 'Video-Tipp: Der Kickflip - So lernst du den König der Tricks',
+    date: '5. Juli 2024',
+    excerpt: 'Du willst den legendären Heelflip lernen? 🚀 Check unser 5-Schritte-Tutorial und mach den nächsten Step in deinem Skate-Progress!“
+    content: `
 
-1. **Wähle die richtige Zeit:** Geh am Anfang am besten morgens oder an Wochentagen, wenn es noch nicht so voll ist. So hast du mehr Platz und weniger Stress.
+In unserem neuen Video im "Fortgeschrittenen"-Dojo gehen wir die Bewegung Schritt für Schritt durch:
 
-2. **Schutzausrüstung tragen:** Auch wenn es nicht immer "cool" aussieht, trage einen Helm und Schoner. Es gibt dir Selbstvertrauen und schützt dich vor Verletzungen. Profis tun das auch!
+1.Stance einnehmen
+  Vordere Fußspitze leicht über die Kante des Boards, hinterer Fuß auf dem Tail wie beim Ollie.
 
-3. **Beobachte die "Lines":** Schau dir an, welche Wege (Lines) die anderen Skater fahren. So lernst du die Regeln des Parks und kommst niemandem in die Quere.
+2.Pop & Absprung
+  Drücke das Tail kräftig nach unten und springe ab – wie beim Ollie.
 
-4. **Starte klein:** Niemand erwartet von dir, dass du sofort die größte Rampe runterfährst. Such dir eine kleine, ruhige Ecke und übe dort die Grundlagen.
+3.Flick mit der Ferse
+  Streife mit der Innenseite deiner vorderen Ferse über die vordere Kante, um das Board in die Heelflip-Rotation zu bringen.
 
-5. **Sei respektvoll und hab Spaß:** Jeder hat mal angefangen. Sei freundlich, frag nach, wenn du unsicher bist, und vor allem: hab Spaß dabei! Darum geht es beim Skaten.`,
-    imageUrl: '/images/rollbrett-ev.jpg',
-  },
-  {
-    id: 5,
-    slug: 'workshop-learn-to-grind',
-    title: 'Workshop: Learn to Grind!',
-    date: '20. August 2024',
-    excerpt: 'Bereit, deine Skills auf das nächste Level zu heben? Nimm an unserem exklusiven "Learn to Grind" Workshop im September teil! Wir decken alles ab, vom ersten 50-50 bis zum Boardslide. Die Plätze sind begrenzt!',
-    content: `Das Geräusch von Achsen auf Metall oder Stein ist Musik in den Ohren eines jeden Skaters. Wenn du bereit bist, dieses Geräusch selbst zu erzeugen, ist unser "Learn to Grind" Workshop genau das Richtige für dich!
+4.Über dem Board bleiben
+  Zieh die Beine hoch und halte dich zentriert über dem Deck, während es sich dreht.
 
-Am Samstag, den 7. September, veranstalten wir einen intensiven Workshop, der sich voll und ganz dem Thema Grinding widmet. Der Kurs richtet sich an fortgeschrittene Fahrer, die bereits sicher im Skatepark unterwegs sind und ihre ersten Obstacles meistern wollen.
+5.Fangen & Landen
+  Fang das Board mit dem hinteren Fuß ab, lande mit beiden Füßen über den Schrauben und roll entspannt weiter.
 
-**Was du lernen wirst:**
-- **Der 50-50 Grind:** Wir starten mit dem absoluten Klassiker auf einer niedrigen Box oder Curb. Du lernst, wie du dich dem Hindernis näherst, auf die Kante springst, die Balance hältst und sicher wieder runterkommst.
-- **Der Boardslide:** Als Nächstes wagen wir uns an den Boardslide auf einem flachen Rail. Wir zeigen dir die richtige Technik, um das Board sicher auf das Rail zu bringen und die Rutschbewegung zu kontrollieren.
-- **Sicherheitstipps:** Grinden birgt neue Risiken. Wir zeigen dir, wie du richtig fällst und was du tun kannst, um das Verletzungsrisiko zu minimieren.
-
-Der Workshop findet von 14:00 bis 17:00 Uhr statt. Bring dein Board, Schutzausrüstung und eine Menge Motivation mit! Zur Vorbereitung kannst du dir schon mal dieses Tutorial ansehen.`,
-    videoId: 'c2p8A0w_g-w', // Example 50-50 Grind Tutorial
-  },
+Wir zeigen euch auch die häufigsten Fehler und wie ihr sie vermeiden könnt. Schaut euch das Video an und schnappt euch euer Board. Viel Erfolg beim Üben!`,
+    videoId: 'c6zsdJsdXb4&t=77s&ab_channel=sortelba', 
 ];
