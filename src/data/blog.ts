@@ -23,7 +23,6 @@ Wir haben Kategorien für Anfänger, Fortgeschrittene und auch eine "Best Trick"
 Für Musik und Verpflegung ist gesorgt. Bringt eure Freunde und Familie mit für einen unvergesslichen Tag voller Skateboarding und Community-Vibes. 
 
 Die Anmeldung ist ab sofort über unsere Kontaktseite möglich. Die Teilnahmegebühr beträgt 5€. Zuschauer sind natürlich kostenlos willkommen! Wir freuen uns auf euch!`,
-    imageUrl: '/images/rollbrett.ev.jpg',
   },
   {
     id: 2,
