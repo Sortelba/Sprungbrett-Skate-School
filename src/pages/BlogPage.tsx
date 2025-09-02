@@ -19,7 +19,9 @@ const BlogPage: React.FC = () => {
               <Link to={`/blog/${post.slug}`}>{post.title}</Link>
             </h2>
             <p className="text-sm text-gray-500 mb-4">{post.date}</p>
-            <p className="text-gray-300 mb-6">{post.excerpt}</p>
+            <p className="text-gray-300 mb-6 italic border-l-4 border-gray-600 pl-4">
+              {post.excerpt}
+            </p>
             <Link 
               to={`/blog/${post.slug}`} 
               className="font-bold text-brand-green hover:text-white transition-colors duration-300"
