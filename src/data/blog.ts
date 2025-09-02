@@ -14,8 +14,8 @@ export interface BlogPost {
 export const allPosts: BlogPost[] = [
   {
     id: 1,
-    slug: 'skate-contest-ankuendigung',
-    title: 'Ankündigung: Großer Skate Contest im Otto-Dullenkopf-Park',
+    slug: 'ROLLBRETT e.V. Karlsruhe',
+    title: 'Karlsruhe und Umgebung!!',
     date: '28. Juli 2024',
     excerpt: 'Rollbrett e.V. Karlsruhe: Die Skate-Community, die mehr bewegt als nur Boards – jetzt mehr erfahren!',
     content: `Rollbrett e.V. Karlsruhe – mehr als nur ein Skateverein

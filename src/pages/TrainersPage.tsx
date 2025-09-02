@@ -28,6 +28,20 @@ const TrainersPage: React.FC = () => {
         Durchsuche unsere Liste qualifizierter Skateboard-Trainer in deiner Umgebung.
       </p>
 
+      {/* Certified Trainers Callout */}
+      <div className="bg-gray-800 border-l-4 border-brand-green p-6 rounded-lg shadow-lg mb-12">
+        <h2 className="text-xl font-bold text-white mb-2">Du suchst nach offiziell lizenzierten Trainern?</h2>
+        <p className="text-gray-300 mb-4">
+          Wir führen auch eine Liste aller vom DOSB (Deutscher Olympischer Sportbund) ausgebildeten und lizenzierten Skateboard-Trainer in Deutschland.
+        </p>
+        <Link 
+          to="/certified-trainers"
+          className="font-bold text-brand-green hover:text-white transition-colors duration-300 inline-block"
+        >
+          Zur Liste der geprüften Trainer &rarr;
+        </Link>
+      </div>
+
       {/* Search Section */}
       <div className="mb-12 flex justify-center items-center space-x-4">
         <input
