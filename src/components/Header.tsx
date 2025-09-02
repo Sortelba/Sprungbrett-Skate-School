@@ -45,12 +45,6 @@ const Header: React.FC = () => {
               Über Uns
             </NavLink>
             <NavLink
-              to="/trainers"
-              className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + ' text-lg font-semibold'}
-            >
-              Trainer Finden
-            </NavLink>
-            <NavLink
               to="/dojo"
               className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + ' text-lg font-semibold'}
             >
@@ -106,9 +100,6 @@ const Header: React.FC = () => {
             </NavLink>
             <NavLink to="/about" onClick={closeMenu} className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + mobileLinkClass}>
               Über Uns
-            </NavLink>
-            <NavLink to="/trainers" onClick={closeMenu} className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + mobileLinkClass}>
-              Trainer Finden
             </NavLink>
             <NavLink to="/dojo" onClick={closeMenu} className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + mobileLinkClass}>
               Dojo

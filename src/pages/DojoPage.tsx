@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { UserSearchIcon } from '../constants/icons';
 
 const DojoPage: React.FC = () => {
   return (
@@ -12,10 +13,10 @@ const DojoPage: React.FC = () => {
       <h1 className="text-4xl font-black mb-4 tracking-tighter">
         SKATE <span className="text-brand-green">DOJO</span>
       </h1>
-      <p className="text-gray-400 mb-12 text-lg">Wähle deinen Skill-Level und starte dein Training.</p>
+      <p className="text-gray-400 mb-12 text-lg">Wähle deinen Skill-Level, finde einen Trainer oder starte dein Training.</p>
 
-      {/* Grid-Layout für die beiden Auswahlkarten */}
-      <div className="grid md:grid-cols-2 gap-8">
+      {/* Grid-Layout für die Auswahlkarten */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
         {/* --- KARTE: BEGINNER --- */}
         {/* Dieser 'Link' führt zur Unterseite für Anfänger-Tutorials. */}
@@ -55,9 +56,29 @@ const DojoPage: React.FC = () => {
             Fortgeschritten
           </h2>
           <p className="text-gray-400">
-            Bereit für den nächsten Schritt? Erweitere dein Trick-Repertoire und verbessere deinen Style.
+            Erweitere dein Trick-Repertoire und verbessere deinen Style mit unseren Tutorials.
           </p>
         </Link>
+        
+        {/* --- KARTE: TRAINER SUCHE --- */}
+        {/* Dieser 'Link' führt zur Seite mit der Trainer-Übersicht. */}
+        <Link
+          to="/trainers"
+          className="bg-gray-800 p-10 rounded-lg shadow-2xl group transform hover:-translate-y-2 transition-all duration-300 flex flex-col justify-center items-center md:col-span-2 lg:col-span-1"
+        >
+           {/* Icon für die Trainer-Suche */}
+           <div className="mb-4">
+             <UserSearchIcon className="h-12 w-12 text-gray-500 group-hover:text-brand-green transition-colors duration-300" />
+          </div>
+           {/* Titel und Beschreibung der Karte */}
+          <h2 className="text-3xl font-bold text-white mb-4 group-hover:text-brand-green transition-colors duration-300">
+            Trainer Suche
+          </h2>
+          <p className="text-gray-400">
+            Finde qualifizierte Skateboard-Trainer und geprüfte Coaches in deiner Umgebung.
+          </p>
+        </Link>
+
       </div>
     </div>
   );

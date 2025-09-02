@@ -127,3 +127,24 @@ export const WebsiteIcon: React.FC<IconProps> = (props) => (
     <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72" />
   </svg>
 );
+
+// --- USER SEARCH ICON ---
+export const UserSearchIcon: React.FC<IconProps> = (props) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M18 18l-4.25-4.25" />
+    <circle cx="10" cy="10" r="7" />
+    <path d="M10 17a7 7 0 01-5.54-2.83" />
+    <path d="M10 3a7 7 0 015.54 2.83" />
+  </svg>
+);
