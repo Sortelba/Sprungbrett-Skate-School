@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
         </div>
         <div className="relative">
             <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase mb-4 animate-fade-in-down">
-                Lerne <span className="text-brand-green">Skateboard</span> fahren!
+                UPDATE ERFOLGREICH! Lerne <span className="text-brand-green">Skateboard</span> fahren!
             </h1>
             <p 
                 className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 animate-fade-in-up"

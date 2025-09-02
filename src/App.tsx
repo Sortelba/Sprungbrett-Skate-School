@@ -10,6 +10,8 @@ import DojoPage from './pages/DojoPage';
 import TrainerDetailPage from './pages/TrainerDetailPage';
 import ImpressumPage from './pages/ImpressumPage';
 import AGBPage from './pages/AGBPage';
+import DojoBeginnerPage from './pages/DojoBeginnerPage';
+import DojoAdvancedPage from './pages/DojoAdvancedPage';
 
 const App: React.FC = () => {
   return (
@@ -23,6 +25,8 @@ const App: React.FC = () => {
             <Route path="/trainers" element={<TrainersPage />} />
             <Route path="/trainers/:trainerId" element={<TrainerDetailPage />} />
             <Route path="/dojo" element={<DojoPage />} />
+            <Route path="/dojo/beginner" element={<DojoBeginnerPage />} />
+            <Route path="/dojo/advanced" element={<DojoAdvancedPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/impressum" element={<ImpressumPage />} />
             <Route path="/agb" element={<AGBPage />} />

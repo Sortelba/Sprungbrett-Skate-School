@@ -11,9 +11,9 @@ const ImpressumPage: React.FC = () => {
         <section>
           <h2 className="text-2xl font-bold text-white mb-4">Angaben gemäß § 5 TMG</h2>
           <p>
-            [Dein Name / Firmenname]<br />
-            [Deine Straße und Hausnummer]<br />
-            [Deine PLZ und Stadt]<br />
+            [Steffen Ortelbach / Group de solide ]<br />
+            [Gaussstr.8]<br />
+            [Karlsruhe]<br />
             Deutschland
           </p>
         </section>
@@ -21,8 +21,8 @@ const ImpressumPage: React.FC = () => {
         <section>
           <h2 className="text-2xl font-bold text-white mb-4">Kontakt</h2>
           <p>
-            Telefon: [Deine Telefonnummer]<br />
-            E-Mail: [Deine E-Mail-Adresse]
+            Telefon: [ kommt noch ]<br />
+            E-Mail: [hallosprungbrett@gmail.com]
           </p>
         </section>
 
