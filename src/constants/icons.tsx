@@ -148,3 +148,61 @@ export const UserSearchIcon: React.FC<IconProps> = (props) => (
     <path d="M10 3a7 7 0 015.54 2.83" />
   </svg>
 );
+
+
+// --- ICONS FOR MEMORY GAME ---
+
+export const CardBackIcon: React.FC<IconProps> = (props) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fontSize="12" fontWeight="900" fontFamily="Inter, sans-serif">SB</text>
+  </svg>
+);
+
+export const SkateboardIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M6 6l12 4-1 4-12-4 1-4z" />
+    <path d="M5 10c-1.1 0-2 .9-2 2s.9 2 2 2" />
+    <path d="M19 14c1.1 0 2-.9 2-2s-.9-2-2-2" />
+  </svg>
+);
+
+export const HelmetIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M2 12A10 10 0 0112 2a10 10 0 0110 10c0 4-4 8-10 8S2 16 2 12z" />
+    <path d="M4 14h16" />
+  </svg>
+);
+
+export const WheelIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+export const ShoeIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M7 17a2 2 0 002 2h8a2 2 0 002-2V9a2 2 0 00-2-2h-3l-4-4-1 3-3 3v8z" />
+    <path d="M7 10h10" />
+  </svg>
+);
+
+export const BearingIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="12" cy="12" r="8" />
+    <circle cx="12" cy="12" r="2" />
+    <path d="M12 4v0" /><path d="M12 20v0" /><path d="M4 12h0" /><path d="M20 12h0" />
+    <path d="M17 7l0 0" /><path d="M7 17l0 0" /><path d="M7 7l0 0" /><path d="M17 17l0 0" />
+  </svg>
+);
+
+export const TruckIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M2 9h20" />
+    <path d="M12 9V5" />
+    <path d="M9 13H5" />
+    <path d="M19 13h-4" />
+    <circle cx="7" cy="17" r="2" />
+    <circle cx="17" cy="17" r="2" />
+  </svg>
+);

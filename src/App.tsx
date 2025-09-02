@@ -22,6 +22,7 @@ import DojoBeginnerPage from './pages/DojoBeginnerPage';
 import DojoAdvancedPage from './pages/DojoAdvancedPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
+import SkateMemoryGamePage from './pages/SkateMemoryGamePage';
 
 const App: React.FC = () => {
   return (
@@ -52,6 +53,7 @@ const App: React.FC = () => {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/impressum" element={<ImpressumPage />} />
             <Route path="/agb" element={<AGBPage />} />
+            <Route path="/game" element={<SkateMemoryGamePage />} />
           </Routes>
         </main>
 
