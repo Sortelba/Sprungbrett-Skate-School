@@ -17,7 +17,7 @@ const DojoBeginnerPage: React.FC = () => {
           {/* Hier kannst du deine YouTube Videos einbetten */}
           <VideoEmbed videoId="Dg3IAhrwx2Q&list=PLusk6Hg6iGHdgsNlcVT2poqM0irfWyDLc&index=1&ab_channel=sortelba" title="3 Tricks ohne Ollie !" />
           {/* Beispiel für ein weiteres Video */}
-          <VideoEmbed videoId="_xlza6Z-2Xo" title="Der Pop Shove-it - Dein erster gedrehter Trick!" />
+          <VideoEmbed videoId="j9mfBdXk_CA&ab_channel=sortelba" title="Pushen und Lenken" />
         </div>
       </div>
     </div>
