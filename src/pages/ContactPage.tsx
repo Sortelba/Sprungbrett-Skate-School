@@ -8,31 +8,28 @@ const ContactPage: React.FC = () => {
   const [statusMessage, setStatusMessage] = useState('');
   const [isError, setIsError] = useState(false);
 
-  // --- IMPORTANT: Replace with your EmailJS credentials ---
+  // --- Deine EmailJS Zugangsdaten ---
   const SERVICE_ID = 'service_sxq9s8g';
   const TEMPLATE_ID = 'template_xgvny18';
   const PUBLIC_KEY = 'VXhP2N2ZcXkMG6-WC';
-  // ---------------------------------------------------------
+  // ------------------------------------
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!form.current) return;
-    
-    // FIX: The check for placeholder credentials has been removed.
-    // Since the EmailJS credentials are now hardcoded, the check against placeholder
-    // strings like 'YOUR_SERVICE_ID' is obsolete and was causing a TypeScript error
-    // for comparing non-overlapping types.
 
     setIsSubmitting(true);
     setStatusMessage('');
     setIsError(false);
 
+    // This is the function that actually sends the email
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
       .then(
         (result) => {
           console.log('SUCCESS!', result.text);
           setStatusMessage('Danke für deine Nachricht! Ich werde mich bald bei dir melden.');
+          setIsError(false);
           form.current?.reset();
         },
         (error) => {
@@ -67,9 +64,10 @@ const ContactPage: React.FC = () => {
           <input
             type="text"
             id="name"
-            name="name"
+            name="name" // Required for EmailJS
             required
             className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-green"
+            aria-label="Name"
           />
         </div>
         <div>
@@ -79,9 +77,10 @@ const ContactPage: React.FC = () => {
           <input
             type="email"
             id="email"
-            name="email"
+            name="email" // Required for EmailJS
             required
             className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-green"
+            aria-label="E-Mail"
           />
         </div>
         <div>
@@ -90,10 +89,11 @@ const ContactPage: React.FC = () => {
           </label>
           <textarea
             id="message"
-            name="message"
+            name="message" // Required for EmailJS
             rows={5}
             required
             className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-green"
+            aria-label="Nachricht"
           ></textarea>
         </div>
         <div>
