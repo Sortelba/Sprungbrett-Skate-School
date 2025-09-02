@@ -1,20 +1,51 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const ContactPage: React.FC = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [status, setStatus] = useState('');
+  const form = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
+  const [isError, setIsError] = useState(false);
+
+  // --- IMPORTANT: Replace with your EmailJS credentials ---
+  const SERVICE_ID = 'service_sxq9s8g';
+  const TEMPLATE_ID = 'template_xgvny18';
+  const PUBLIC_KEY = 'VXhP2N2ZcXkMG6-WC';
+  // ---------------------------------------------------------
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // In a real application, you would handle form submission here (e.g., send to an API endpoint)
-    console.log({ name, email, message });
-    setStatus('Danke für deine Nachricht! Ich werde mich bald bei dir melden.');
-    setName('');
-    setEmail('');
-    setMessage('');
+
+    if (!form.current) return;
+    
+    // Check if placeholders have been replaced
+    if (SERVICE_ID === 'YOUR_SERVICE_ID' || TEMPLATE_ID === 'YOUR_TEMPLATE_ID' || PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+      setStatusMessage('Bitte konfiguriere zuerst die EmailJS Zugangsdaten in ContactPage.tsx.');
+      setIsError(true);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatusMessage('');
+    setIsError(false);
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+      .then(
+        (result) => {
+          console.log('SUCCESS!', result.text);
+          setStatusMessage('Danke für deine Nachricht! Ich werde mich bald bei dir melden.');
+          form.current?.reset();
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+          setStatusMessage('Ups! Beim Senden ist ein Fehler aufgetreten. Bitte versuche es später erneut.');
+          setIsError(true);
+        }
+      )
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -25,29 +56,32 @@ const ContactPage: React.FC = () => {
       <p className="text-center text-gray-400 mb-8">
         Hast du Fragen oder möchtest du eine Privatstunde buchen? Füll das Formular aus und ich melde mich bei dir.
       </p>
-      <form onSubmit={handleSubmit} className="space-y-6 bg-gray-800 p-8 rounded-lg shadow-2xl">
+      
+      <form
+        ref={form}
+        onSubmit={handleSubmit}
+        className="space-y-6 bg-gray-800 p-8 rounded-lg shadow-2xl"
+      >
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="from_name" className="block text-sm font-medium text-gray-300 mb-2">
             Name
           </label>
           <input
             type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            id="from_name"
+            name="from_name"
             required
             className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-green"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="reply_to" className="block text-sm font-medium text-gray-300 mb-2">
             E-Mail
           </label>
           <input
             type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            id="reply_to"
+            name="reply_to"
             required
             className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-green"
           />
@@ -58,9 +92,8 @@ const ContactPage: React.FC = () => {
           </label>
           <textarea
             id="message"
+            name="message"
             rows={5}
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
             required
             className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-green"
           ></textarea>
@@ -68,12 +101,17 @@ const ContactPage: React.FC = () => {
         <div>
           <button
             type="submit"
-            className="w-full bg-brand-green text-gray-900 font-bold py-3 px-8 rounded-md hover:bg-white transition-all duration-300 transform hover:scale-105"
+            disabled={isSubmitting}
+            className="w-full bg-brand-green text-gray-900 font-bold py-3 px-8 rounded-md hover:bg-white transition-all duration-300 transform hover:scale-105 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:scale-100"
           >
-            Nachricht Senden
+            {isSubmitting ? 'Sende...' : 'Nachricht Senden'}
           </button>
         </div>
-        {status && <p className="text-center text-brand-green mt-4">{status}</p>}
+        {statusMessage && (
+          <p className={`text-center mt-4 ${isError ? 'text-red-500' : 'text-brand-green'}`}>
+            {statusMessage}
+          </p>
+        )}
       </form>
     </div>
   );
