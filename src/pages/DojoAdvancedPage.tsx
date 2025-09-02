@@ -16,7 +16,9 @@ const DojoAdvancedPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Hier kannst du deine YouTube Videos einbetten */}
             <VideoEmbed videoId="gW12-m3_guE" title="Der Kickflip - Der König der Tricks!" />
-            {/* <VideoEmbed videoId="VIDEO_ID_HIER" title="Titel des Videos" /> */}
+            <VideoEmbed videoId="fP5-9z08i_M" title="How-To: Heelflip" />
+            <VideoEmbed videoId="YS4aY63A-0A" title="How-To: 360 Flip / Tre Flip" />
+            <VideoEmbed videoId="gRKfAMso_bE" title="How-To: Boardslide auf einem Rail" />
         </div>
       </div>
     </div>
