@@ -1,21 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-const VideoEmbed: React.FC<{ videoId: string; title: string }> = ({ videoId, title }) => (
-  <div>
-    <div className="aspect-video w-full rounded-lg overflow-hidden border-2 border-gray-700">
-      <iframe
-        src={`https://www.youtube.com/embed/${videoId}`}
-        title={title}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="w-full h-full"
-      ></iframe>
-    </div>
-    <h3 className="text-white text-lg font-semibold mt-4 text-center md:text-left">{title}</h3>
-  </div>
-);
+import VideoEmbed from '../components/VideoEmbed';
 
 const DojoBeginnerPage: React.FC = () => {
   return (
@@ -30,7 +15,7 @@ const DojoBeginnerPage: React.FC = () => {
         <p className="text-gray-400 mb-8 text-center max-w-3xl mx-auto">Hier findest du alles, was du für deine ersten Schritte auf dem Skateboard brauchst. Vom sicheren Stand bis zu deinem ersten Trick!</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Hier kannst du deine YouTube Videos einbetten */}
-          <VideoEmbed videoId="arV3_I-1l4M" title="Der Ollie - Dein erster Sprung!" />
+          <VideoEmbed videoId="Dg3IAhrwx2Q&list=PLusk6Hg6iGHdgsNlcVT2poqM0irfWyDLc&index=1&ab_channel=sortelba" title="3 Tricks ohne Ollie !" />
           {/* Beispiel für ein weiteres Video */}
           <VideoEmbed videoId="_xlza6Z-2Xo" title="Der Pop Shove-it - Dein erster gedrehter Trick!" />
         </div>

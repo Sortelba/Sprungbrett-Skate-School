@@ -1,21 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-const VideoEmbed: React.FC<{ videoId: string; title: string }> = ({ videoId, title }) => (
-  <div>
-    <div className="aspect-video w-full rounded-lg overflow-hidden border-2 border-gray-700">
-      <iframe
-        src={`https://www.youtube.com/watch?v=Dg3IAhrwx2Q&list=PLusk6Hg6iGHdgsNlcVT2poqM0irfWyDLc&ab_channel=sortelba`}
-        title={title}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="w-full h-full"
-      ></iframe>
-    </div>
-    <h3 className="text-white text-lg font-semibold mt-4 text-center md:text-left">{title}</h3>
-  </div>
-);
+import VideoEmbed from '../components/VideoEmbed';
 
 const DojoAdvancedPage: React.FC = () => {
   return (
