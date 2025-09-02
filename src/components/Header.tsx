@@ -47,6 +47,12 @@ const Header: React.FC = () => {
               Dojo
             </NavLink>
             <NavLink
+              to="/blog"
+              className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + ' text-lg font-semibold'}
+            >
+              Blog
+            </NavLink>
+            <NavLink
               to="/contact"
               className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + ' text-lg font-semibold'}
             >
@@ -105,6 +111,13 @@ const Header: React.FC = () => {
               className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + mobileLinkClass}
             >
               Dojo
+            </NavLink>
+            <NavLink
+              to="/blog"
+              onClick={closeMenu}
+              className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + mobileLinkClass}
+            >
+              Blog
             </NavLink>
             <NavLink
               to="/contact"
