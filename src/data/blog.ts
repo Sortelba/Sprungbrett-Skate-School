@@ -23,7 +23,7 @@ Wir haben Kategorien für Anfänger, Fortgeschrittene und auch eine "Best Trick"
 Für Musik und Verpflegung ist gesorgt. Bringt eure Freunde und Familie mit für einen unvergesslichen Tag voller Skateboarding und Community-Vibes. 
 
 Die Anmeldung ist ab sofort über unsere Kontaktseite möglich. Die Teilnahmegebühr beträgt 5€. Zuschauer sind natürlich kostenlos willkommen! Wir freuen uns auf euch!`,
-    imageUrl: 'https://source.unsplash.com/800x450/?skatepark,contest',
+    imageUrl: '/images/rollbrett.ev.jpg',
   },
   {
     id: 2,
@@ -77,7 +77,7 @@ Wir zeigen euch auch die häufigsten Fehler und wie ihr sie vermeiden könnt. Sc
 4. **Starte klein:** Niemand erwartet von dir, dass du sofort die größte Rampe runterfährst. Such dir eine kleine, ruhige Ecke und übe dort die Grundlagen.
 
 5. **Sei respektvoll und hab Spaß:** Jeder hat mal angefangen. Sei freundlich, frag nach, wenn du unsicher bist, und vor allem: hab Spaß dabei! Darum geht es beim Skaten.`,
-    imageUrl: '/image/rollbrett.ev.jpg',
+    imageUrl: '/images/rollbrett.ev.jpg',
   },
   {
     id: 5,
