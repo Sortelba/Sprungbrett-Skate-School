@@ -14,7 +14,7 @@ const AboutPage: React.FC = () => {
           />
         </div>
         <div className="md:col-span-2 space-y-4">
-          <h2 className="text-2xl font-bold text-white">Steffen</h2>
+          <h2 className="text-2xl font-bold text-white">Sprungbrett</h2>
           <p className="text-gray-300">
             Mein Name ist Steffen, ich wurde 1992 geboren und habe 1999 mein erstes Skateboard bekommen. Seitdem hat mich das Skaten nicht mehr losgelassen. Über die Jahre habe ich unzählige Erfahrungen gesammelt – mit Rückschlägen, Erfolgen und allem, was dazwischen liegt. Skateboarding ist für mich mehr als nur ein Sport: Es ist Leidenschaft, Freiheit und eine Schule fürs Leben. Heute möchte ich meine Sichtweise teilen und allen helfen – egal ob jung oder alt, Anfänger oder Fortgeschrittener –, die mit dem Skaten starten wollen oder gerade nicht weiterkommen.
           </p>
