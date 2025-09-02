@@ -19,7 +19,7 @@ const BlogPage: React.FC = () => {
               <Link to={`/blog/${post.slug}`}>{post.title}</Link>
             </h2>
             <p className="text-sm text-gray-500 mb-4">{post.date}</p>
-            <p className="text-gray-300 mb-6 italic border-l-4 border-gray-600 pl-4">
+            <p className="text-gray-300 mb-6 italic border-l-4 border-gray-700 bg-black/25 p-4 rounded-lg">
               {post.excerpt}
             </p>
             <Link 

@@ -32,11 +32,11 @@ const BlogPostPage: React.FC = () => {
           <img 
             src={post.imageUrl} 
             alt={post.title} 
-            className="w-full h-auto max-h-[225px] object-cover rounded-lg mb-8 shadow-lg border-2 border-gray-700"
+            className="w-full h-auto rounded-lg mb-8 shadow-lg border-2 border-gray-700"
           />
         )}
         {post.videoId && (
-            <div className="mb-8">
+            <div className="my-8 max-w-3xl mx-auto">
                 <VideoEmbed videoId={post.videoId} title={post.title} />
             </div>
         )}
