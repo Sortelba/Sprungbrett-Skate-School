@@ -19,12 +19,10 @@ const ContactPage: React.FC = () => {
 
     if (!form.current) return;
     
-    // Check if placeholders have been replaced
-    if (SERVICE_ID === 'YOUR_SERVICE_ID' || TEMPLATE_ID === 'YOUR_TEMPLATE_ID' || PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
-      setStatusMessage('Bitte konfiguriere zuerst die EmailJS Zugangsdaten in ContactPage.tsx.');
-      setIsError(true);
-      return;
-    }
+    // FIX: The check for placeholder credentials has been removed.
+    // Since the EmailJS credentials are now hardcoded, the check against placeholder
+    // strings like 'YOUR_SERVICE_ID' is obsolete and was causing a TypeScript error
+    // for comparing non-overlapping types.
 
     setIsSubmitting(true);
     setStatusMessage('');
@@ -63,25 +61,25 @@ const ContactPage: React.FC = () => {
         className="space-y-6 bg-gray-800 p-8 rounded-lg shadow-2xl"
       >
         <div>
-          <label htmlFor="from_name" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
             Name
           </label>
           <input
             type="text"
-            id="from_name"
-            name="from_name"
+            id="name"
+            name="name"
             required
             className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-green"
           />
         </div>
         <div>
-          <label htmlFor="reply_to" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
             E-Mail
           </label>
           <input
             type="email"
-            id="reply_to"
-            name="reply_to"
+            id="email"
+            name="email"
             required
             className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-brand-green"
           />
