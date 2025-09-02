@@ -30,9 +30,9 @@ const DojoBeginnerPage: React.FC = () => {
         <p className="text-gray-400 mb-8 text-center max-w-3xl mx-auto">Hier findest du alles, was du für deine ersten Schritte auf dem Skateboard brauchst. Vom sicheren Stand bis zu deinem ersten Trick!</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Hier kannst du deine YouTube Videos einbetten */}
-          <VideoEmbed videoId="arV3_I-1l4M" title="Der Ollie - Dein erster Trick!" />
+          <VideoEmbed videoId="arV3_I-1l4M" title="Der Ollie - Dein erster Sprung!" />
           {/* Beispiel für ein weiteres Video */}
-          {/* <VideoEmbed videoId="VIDEO_ID_HIER" title="Titel des Videos" /> */}
+          <VideoEmbed videoId="_xlza6Z-2Xo" title="Der Pop Shove-it - Dein erster gedrehter Trick!" />
         </div>
       </div>
     </div>
