@@ -17,7 +17,7 @@ export const allTrainers: Trainer[] = [
     location: '76131 Karlsruhe',
     bio: 'Leidenschaftlicher Skater seit 1999 mit viel Erfahrung im Coaching von Anfängern und Fortgeschrittenen.',
     detailedBio: 'Steffen ist seit über 20 Jahren auf dem Skateboard und hat in dieser Zeit unzählige Wettbewerbe bestritten und an diversen Videoprojekten mitgewirkt. Seine Leidenschaft ist es, sein Wissen und seine Begeisterung für das Skateboarding an die nächste Generation weiterzugeben. Er ist spezialisiert auf die Grundlagen, kann aber auch fortgeschrittenen Skatern helfen, ihr Trick-Repertoire zu erweitern.',
-    imageUrl: 'https://source.unsplash.com/400x400/?skateboarder,portrait,male,karlsruhe',
+    imageUrl: '/images/steffen-trainer-picture.jpg',
     instagramUrl: 'https://instagram.com/sortelba',
   },
   {
