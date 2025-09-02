@@ -32,7 +32,7 @@ const Header: React.FC = () => {
               to="/about"
               className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + ' text-lg font-semibold'}
             >
-              Über Mich
+              Über Uns
             </NavLink>
             <NavLink
               to="/trainers"
@@ -90,7 +90,7 @@ const Header: React.FC = () => {
               onClick={closeMenu}
               className={({ isActive }) => (isActive ? activeLinkClass : inactiveLinkClass) + mobileLinkClass}
             >
-              Über Mich
+              Über Uns
             </NavLink>
             <NavLink
               to="/trainers"
