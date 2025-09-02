@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
             <a href="https://youtube.com/@sortelba" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-green transition-colors duration-200">
               <YouTubeIcon className="h-6 w-6" />
             </a>
-            <a href="https://instagram.com/sortelba" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-green transition-colors duration-200">
+            <a href="https://instagram.com/sprungbrettsk8school" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-green transition-colors duration-200">
               <InstagramIcon className="h-6 w-6" />
             </a>
             <a href="https://solide.myspreadshop.de/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-green transition-colors duration-200">

@@ -6,7 +6,7 @@ const HomePage: React.FC = () => {
     <div className="relative text-center py-16 md:py-32 overflow-hidden">
         <div 
             className="absolute inset-0 bg-cover bg-center opacity-10 animate-background-zoom grayscale blur-[2px]" 
-            style={{backgroundImage: "url('/images/homepage-bg.jpg')"}}>
+            style={{backgroundImage: "url('https://picsum.photos/seed/skateboarding/1600/900')"}}>
         </div>
         <div className="relative">
             <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase mb-4 animate-fade-in-down">
