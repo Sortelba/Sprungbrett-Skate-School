@@ -17,12 +17,21 @@ const MemoryCard: React.FC<MemoryCardProps> = ({ icon: Icon, isFlipped, isMatche
       <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}>
         
         {/* --- KARTENRÜCKSEITE --- */}
-        <div className="absolute w-full h-full [backface-visibility:hidden] flex items-center justify-center rounded-lg shadow-lg bg-gray-700 group-hover:bg-gray-600 transition-colors">
+        {/* Fügt einen Ring beim Hovern hinzu, um besseres Feedback zu geben. */}
+        <div className="absolute w-full h-full [backface-visibility:hidden] flex items-center justify-center rounded-lg shadow-lg bg-gray-700 group-hover:ring-2 ring-brand-green transition-all">
           <CardBackIcon className="w-1/2 h-1/2 text-brand-green opacity-80" />
         </div>
         
         {/* --- KARTENVORDERSEITE --- */}
-        <div className={`absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] flex items-center justify-center rounded-lg shadow-lg ${isMatched ? 'bg-brand-green' : 'bg-gray-800'}`}>
+        {/* Differenzierte Stile für aufgedeckte (aber nicht gefundene) und gefundene Paare. */}
+        <div className={`
+          absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] 
+          flex items-center justify-center rounded-lg shadow-lg transition-all
+          ${isMatched 
+            ? 'bg-brand-green' // Stil für ein gefundenes Paar
+            : 'bg-gray-900 ring-2 ring-brand-green' // Stil für eine aufgedeckte Karte
+          }
+        `}>
           <Icon className={`w-3/4 h-3/4 ${isMatched ? 'text-gray-900' : 'text-white'}`} />
         </div>
       </div>

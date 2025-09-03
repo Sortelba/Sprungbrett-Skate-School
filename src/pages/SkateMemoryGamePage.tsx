@@ -135,14 +135,21 @@ const SkateMemoryGamePage: React.FC = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto py-12 text-center animate-fade-in-up">
-      <h1 className="text-4xl font-black mb-4 tracking-tighter">SKATE <span className="text-brand-green">MEMORY</span></h1>
-      
-      <div className="flex justify-center items-center space-x-8 mb-8 bg-gray-800 p-4 rounded-lg shadow-inner">
-        <p className="text-xl font-bold">Züge: <span className="text-brand-green">{moves}</span></p>
+    <div className="max-w-6xl mx-auto py-12 flex flex-col items-center animate-fade-in-up">
+      {/* Neue, konsolidierte Statusleiste */}
+      <div className="w-full max-w-4xl flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 bg-gray-800 p-4 rounded-lg shadow-inner">
+        <h1 className="text-2xl font-black tracking-tighter text-white">
+          SKATE <span className="text-brand-green">MEMORY</span>
+        </h1>
+
+        <div className="flex items-center gap-6 font-bold text-lg">
+          <p>Paare: <span className="text-brand-green">{matchedPairs.length} / {difficulties[difficulty].pairs}</span></p>
+          <p>Züge: <span className="text-brand-green">{moves}</span></p>
+        </div>
+        
         <button 
           onClick={backToSelection}
-          className="bg-brand-green text-gray-900 font-bold py-2 px-6 rounded-md hover:bg-white transition-all duration-300 transform hover:scale-105"
+          className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-md transition-all duration-300"
         >
           Neues Spiel
         </button>
