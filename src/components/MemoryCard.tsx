@@ -1,82 +1,55 @@
 import React from 'react';
 
-// Props, die die MemoryCard-Komponente erwartet
+// Props that the MemoryCard component expects
 interface MemoryCardProps {
-  icon: React.FC<{ className?: string }>;      // Das Icon, das auf der Vorderseite angezeigt wird
-  isFlipped: boolean;                           // Ist die Karte aktuell aufgedeckt?
-  isMatched: boolean;                           // Wurde das Paar dieser Karte bereits gefunden?
-  onClick: () => void;                          // Funktion, die bei einem Klick aufgerufen wird
-  CardBackIcon: React.FC<{ className?: string }>; // Das Icon für die Rückseite der Karte
+  icon: React.FC<{ className?: string }>;      // The icon to display on the front
+  isFlipped: boolean;                           // Is the card currently face-up?
+  isMatched: boolean;                           // Has the card's pair been found?
+  onClick: () => void;                          // Function to call on click
+  CardBackIcon: React.FC<{ className?: string }>; // The icon for the back of the card
 }
 
+/**
+ * A simple, robust Memory Card component that no longer uses 3D transforms.
+ * It relies on conditional rendering and basic Tailwind classes for styling,
+ * which is a much more reliable approach than the previous animation attempts.
+ */
 const MemoryCard: React.FC<MemoryCardProps> = ({ icon: Icon, isFlipped, isMatched, onClick, CardBackIcon }) => {
   
-  const cardContainerStyle: React.CSSProperties = {
-    perspective: '1000px',
-  };
+  // Base classes for all cards
+  const baseClasses = 'aspect-square w-full h-full flex items-center justify-center rounded-lg shadow-lg transition-all duration-300';
 
-  const cardInnerStyle: React.CSSProperties = {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    transition: 'transform 0.5s',
-    transformStyle: 'preserve-3d',
-    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-  };
+  // Dynamically determine the card's appearance based on its state
+  const stateClasses = isMatched
+    ? 'bg-brand-green cursor-default' // Style for a successfully matched card
+    : isFlipped
+      ? 'bg-gray-900 ring-2 ring-brand-green' // Style for a temporarily flipped card
+      : 'bg-gray-700 hover:ring-2 ring-brand-green cursor-pointer'; // Style for a default, face-down card
 
-  const faceStyle: React.CSSProperties = {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    backfaceVisibility: 'hidden',
-    WebkitBackfaceVisibility: 'hidden', // For Safari
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '0.5rem', // Tailwind's rounded-lg
-    boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)', // Tailwind's shadow-lg
-  };
-  
-  const backFaceStyle: React.CSSProperties = {
-    ...faceStyle,
-  };
-
-  const frontFaceStyle: React.CSSProperties = {
-    ...faceStyle,
-    transform: 'rotateY(180deg)',
-  };
+  // Combine all classes into a single string
+  const cardClassName = `${baseClasses} ${stateClasses}`;
 
   return (
-    // The perspective container.
     <div
-      style={cardContainerStyle}
-      className="aspect-square cursor-pointer group"
-      onClick={!isFlipped && !isMatched ? onClick : undefined}
+      className={cardClassName}
+      onClick={!isFlipped && !isMatched ? onClick : undefined} // The card is only clickable if it's face-down
+      aria-pressed={isFlipped}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && !isFlipped && !isMatched) {
+          onClick();
+        }
+      }}
     >
-      {/* The rotating card element */}
-      <div
-        style={cardInnerStyle}
-      >
-        {/* --- KARTENRÜCKSEITE (Card Back) --- */}
-        <div
-          style={backFaceStyle}
-          className="bg-gray-700 group-hover:ring-2 ring-brand-green transition-all"
-        >
-          <CardBackIcon className="w-1/2 h-1/2 text-brand-green opacity-80" />
-        </div>
-
-        {/* --- KARTENVORDERSEITE (Card Front) --- */}
-        <div
-          style={frontFaceStyle}
-          className={`transition-all ${
-            isMatched
-              ? 'bg-brand-green' // Style for a matched pair
-              : 'bg-gray-900 ring-2 ring-brand-green' // Style for a flipped card
-          }`}
-        >
-          <Icon className={`w-3/4 h-3/4 ${isMatched ? 'text-gray-900' : 'text-white'}`} />
-        </div>
-      </div>
+      {/* Conditionally render the front or back of the card */}
+      {isFlipped || isMatched ? (
+        // --- Card Front (Icon) ---
+        <Icon className={`w-3/4 h-3/4 ${isMatched ? 'text-gray-900' : 'text-white'}`} />
+      ) : (
+        // --- Card Back (Logo) ---
+        <CardBackIcon className="w-1/2 h-1/2 text-brand-green opacity-80" />
+      )}
     </div>
   );
 };
