@@ -41,6 +41,19 @@ type Obstacle = {
     typeIndex: number; // Index to reference the obstacleTypes array
 };
 
+// --- SOUND HELPER FUNCTION ---
+// This function creates a new Audio object and plays it. This is more reliable
+// across different browsers than creating a single audio object instance upfront.
+const playSound = (soundFile: string) => {
+    try {
+        const audio = new Audio(soundFile);
+        audio.play().catch(e => console.error(`Error playing sound ${soundFile}:`, e));
+    } catch (error) {
+        console.error(`Could not create audio for ${soundFile}:`, error);
+    }
+};
+
+
 const SkateJumpGamePage: React.FC = () => {
     // --- STATE MANAGEMENT ---
     const [gameState, setGameState] = useState<'waiting' | 'playing' | 'gameOver'>('waiting');
@@ -56,16 +69,6 @@ const SkateJumpGamePage: React.FC = () => {
     const gameSpeed = useRef(INITIAL_SPEED);
     const obstacleTimer = useRef(0);
     const frameId = useRef<number | null>(null);
-
-    // --- SOUND EFFEKTE ---
-    // Die folgenden Zeilen laden die Sound-Dateien.
-    // Damit dies funktioniert, musst du einen Ordner `public/sounds` erstellen
-    // und darin die Dateien `jump.mp3`, `score.mp3` und `gameover.mp3` ablegen.
-    
-    const jumpSound = useRef(new Audio('/sounds/jump.mp3'));
-    const scoreSound = useRef(new Audio('/sounds/score.mp3'));
-    const gameOverSound = useRef(new Audio('/sounds/gameover.mp3'));
-
 
     // --- GAME LOGIC ---
     const resetGame = useCallback(() => {
@@ -138,8 +141,7 @@ const SkateJumpGamePage: React.FC = () => {
         if (newScore > score) {
             setScore(newScore);
             // Play scoring sound effect
-            scoreSound.current.currentTime = 0; // Rewind to start to allow rapid playing
-            scoreSound.current.play().catch(e => console.error("Error playing score sound:", e));
+            playSound('/sounds/score.mp3');
 
             // Check if a score threshold is crossed to increase speed
             const oldLevel = Math.floor(score / SCORE_THRESHOLD);
@@ -153,7 +155,7 @@ const SkateJumpGamePage: React.FC = () => {
         if (collisionDetected) {
             setGameState('gameOver');
             // Play game over sound effect
-            gameOverSound.current.play().catch(e => console.error("Error playing game over sound:", e));
+            playSound('/sounds/gameover.mp3');
             if (newScore > highScore) {
                 setHighScore(newScore);
                 localStorage.setItem('skateJumpHighScore', String(newScore));
@@ -161,7 +163,7 @@ const SkateJumpGamePage: React.FC = () => {
         } else {
             frameId.current = requestAnimationFrame(gameLoop);
         }
-    }, [playerTop, currentObstacles, score, highScore, resetGame]);
+    }, [playerTop, currentObstacles, score, highScore]);
     
     // --- EVENT HANDLERS & EFFECTS ---
     const handleJump = useCallback(() => {
@@ -170,8 +172,7 @@ const SkateJumpGamePage: React.FC = () => {
         } else if (gameState === 'playing' && playerTop >= GROUND_Y - PLAYER_HEIGHT - 1) { // -1 allows for small floating point inaccuracies
             playerVelocityY.current = JUMP_FORCE;
             // Play jump sound effect
-            jumpSound.current.currentTime = 0; // Rewind to start for quick jumps
-            jumpSound.current.play().catch(e => console.error("Error playing jump sound:", e));
+            playSound('/sounds/jump.mp3');
         }
     }, [gameState, resetGame, playerTop]);
 

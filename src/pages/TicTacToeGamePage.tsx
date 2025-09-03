@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CrossedDecksIcon, SkateWheelIcon } from '../constants/icons';
 
@@ -38,10 +38,6 @@ const TicTacToeGamePage: React.FC = () => {
   const [xIsNext, setXIsNext] = useState(true);
   const [scores, setScores] = useState({ X: 0, O: 0 });
 
-  // Ref for the game over sound effect
-  const gameOverSound = useRef(new Audio('/sounds/gameover.mp3'));
-
-
   // Load scores from localStorage on component mount
   useEffect(() => {
     const savedScores = localStorage.getItem('ticTacToeScores');
@@ -77,14 +73,20 @@ const TicTacToeGamePage: React.FC = () => {
 
   // Update score, save to localStorage, and play sound when game ends
   useEffect(() => {
+    // Wenn es einen Gewinner oder ein Unentschieden gibt, ist das Spiel vorbei.
     if (winner || isTie) {
-        gameOverSound.current.play().catch(e => console.error("Error playing game over sound:", e));
+        // Spielt den Game-Over-Sound ab.
+        // Ein neues Audio-Objekt wird direkt hier erstellt, was zuverlässiger ist.
+        new Audio('/sounds/gameover.mp3').play().catch(e => console.error("Error playing game over sound:", e));
+        
+        // Wenn es einen Gewinner gibt, aktualisiere den Punktestand.
         if(winner) {
             const newScores = { ...scores, [winner]: scores[winner] + 1 };
             setScores(newScores);
             localStorage.setItem('ticTacToeScores', JSON.stringify(newScores));
         }
     }
+    // Dieser Effekt wird immer dann ausgeführt, wenn sich der 'winner' oder 'isTie'-Status ändert.
   }, [winner, isTie]);
 
 
