@@ -10,59 +10,34 @@ interface MemoryCardProps {
 }
 
 const MemoryCard: React.FC<MemoryCardProps> = ({ icon: Icon, isFlipped, isMatched, onClick, CardBackIcon }) => {
-  // --- Inline Styles for 3D Transform ---
-  // The `perspective` property is crucial for establishing a 3D space.
-  const containerStyles: React.CSSProperties = {
-    perspective: '1000px',
-  };
-
-  const cardStyles: React.CSSProperties = {
-    transformStyle: 'preserve-3d',
-    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-  };
-
-  const faceStyles: React.CSSProperties = {
-    backfaceVisibility: 'hidden',
-    WebkitBackfaceVisibility: 'hidden', // Vendor prefix for Safari compatibility
-  };
-
-  const frontFaceStyles: React.CSSProperties = {
-    ...faceStyles,
-    transform: 'rotateY(180deg)',
-  };
-
   return (
-    // Der äußere Container fängt Klicks ab und etabliert den 3D-Raum
-    <div 
-      className="aspect-square cursor-pointer group" 
-      style={containerStyles} 
+    // The perspective container. This establishes the 3D space for the animation.
+    <div
+      className="aspect-square cursor-pointer group [perspective:1000px]"
       onClick={!isFlipped && !isMatched ? onClick : undefined}
     >
-      {/* Dieser Container ist für die 3D-Animation zuständig */}
-      <div 
-        className="relative w-full h-full transition-transform duration-500 transform-gpu"
-        style={cardStyles}
+      {/* The rotating card element. Its transform is toggled based on the 'isFlipped' prop. */}
+      <div
+        className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
+          isFlipped ? '[transform:rotateY(180deg)]' : '[transform:rotateY(0deg)]'
+        }`}
       >
-        
-        {/* --- KARTENRÜCKSEITE --- */}
-        <div 
-          className="absolute w-full h-full flex items-center justify-center rounded-lg shadow-lg bg-gray-700 group-hover:ring-2 ring-brand-green transition-all"
-          style={faceStyles}
+        {/* --- KARTENRÜCKSEITE (Card Back) --- */}
+        {/* Always visible by default, hidden when the card is flipped. */}
+        <div
+          className="absolute w-full h-full [backface-visibility:hidden] flex items-center justify-center rounded-lg shadow-lg bg-gray-700 group-hover:ring-2 ring-brand-green transition-all"
         >
           <CardBackIcon className="w-1/2 h-1/2 text-brand-green opacity-80" />
         </div>
-        
-        {/* --- KARTENVORDERSEITE --- */}
-        <div 
-          className={`
-            absolute w-full h-full
-            flex items-center justify-center rounded-lg shadow-lg transition-all
-            ${isMatched 
-              ? 'bg-brand-green' // Stil für ein gefundenes Paar
-              : 'bg-gray-900 ring-2 ring-brand-green' // Stil für eine aufgedeckte Karte
-            }
-          `}
-          style={frontFaceStyles}
+
+        {/* --- KARTENVORDERSEITE (Card Front) --- */}
+        {/* Rotated 180 degrees initially, becomes visible when the parent flips. */}
+        <div
+          className={`absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] flex items-center justify-center rounded-lg shadow-lg transition-all ${
+            isMatched
+              ? 'bg-brand-green' // Style for a matched pair
+              : 'bg-gray-900 ring-2 ring-brand-green' // Style for a flipped card
+          }`}
         >
           <Icon className={`w-3/4 h-3/4 ${isMatched ? 'text-gray-900' : 'text-white'}`} />
         </div>
