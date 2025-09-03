@@ -115,8 +115,6 @@ const SkateJumpGamePage: React.FC = () => {
 
         if (newScore > score) {
             setScore(newScore);
-            // --- SOUND: SCORE ---
-            audioManager.playSound('/sounds/score.mp3');
 
             const oldLevel = Math.floor(score / SCORE_THRESHOLD);
             const newLevel = Math.floor(newScore / SCORE_THRESHOLD);
@@ -144,9 +142,6 @@ const SkateJumpGamePage: React.FC = () => {
             resetGame();
         } else if (gameState === 'playing' && playerTop >= GROUND_Y - PLAYER_HEIGHT - 1) {
             playerVelocityY.current = JUMP_FORCE;
-            // --- SOUND: JUMP ---
-            // This line plays the sound effect when the player jumps.
-            audioManager.playSound('/sounds/jump.mp3');
         }
     }, [gameState, resetGame, playerTop]);
 
