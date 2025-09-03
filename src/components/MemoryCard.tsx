@@ -13,19 +13,19 @@ const MemoryCard: React.FC<MemoryCardProps> = ({ icon: Icon, isFlipped, isMatche
   return (
     // The perspective container. This establishes the 3D space for the animation.
     <div
-      className="aspect-square cursor-pointer group [perspective:1000px]"
+      className="aspect-square cursor-pointer group perspective"
       onClick={!isFlipped && !isMatched ? onClick : undefined}
     >
       {/* The rotating card element. Its transform is toggled based on the 'isFlipped' prop. */}
       <div
-        className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
-          isFlipped ? '[transform:rotateY(180deg)]' : '[transform:rotateY(0deg)]'
+        className={`relative w-full h-full transition-transform duration-500 transform-style-3d ${
+          isFlipped ? 'rotate-y-180' : ''
         }`}
       >
         {/* --- KARTENRÜCKSEITE (Card Back) --- */}
         {/* Always visible by default, hidden when the card is flipped. */}
         <div
-          className="absolute w-full h-full [backface-visibility:hidden] flex items-center justify-center rounded-lg shadow-lg bg-gray-700 group-hover:ring-2 ring-brand-green transition-all"
+          className="absolute w-full h-full backface-hidden flex items-center justify-center rounded-lg shadow-lg bg-gray-700 group-hover:ring-2 ring-brand-green transition-all"
         >
           <CardBackIcon className="w-1/2 h-1/2 text-brand-green opacity-80" />
         </div>
@@ -33,7 +33,7 @@ const MemoryCard: React.FC<MemoryCardProps> = ({ icon: Icon, isFlipped, isMatche
         {/* --- KARTENVORDERSEITE (Card Front) --- */}
         {/* Rotated 180 degrees initially, becomes visible when the parent flips. */}
         <div
-          className={`absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] flex items-center justify-center rounded-lg shadow-lg transition-all ${
+          className={`absolute w-full h-full backface-hidden rotate-y-180 flex items-center justify-center rounded-lg shadow-lg transition-all ${
             isMatched
               ? 'bg-brand-green' // Style for a matched pair
               : 'bg-gray-900 ring-2 ring-brand-green' // Style for a flipped card
