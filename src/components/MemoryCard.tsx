@@ -14,18 +14,18 @@ const MemoryCard: React.FC<MemoryCardProps> = ({ icon: Icon, isFlipped, isMatche
     // Der äußere Container fängt Klicks ab und definiert den Platz der Karte im Grid
     <div className="aspect-square cursor-pointer group" onClick={!isFlipped && !isMatched ? onClick : undefined}>
       {/* Dieser Container ist für die 3D-Animation zuständig */}
-      <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}>
+      <div className={`relative w-full h-full transition-transform duration-500 transform-gpu transform-preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
         
         {/* --- KARTENRÜCKSEITE --- */}
         {/* Fügt einen Ring beim Hovern hinzu, um besseres Feedback zu geben. */}
-        <div className="absolute w-full h-full [backface-visibility:hidden] flex items-center justify-center rounded-lg shadow-lg bg-gray-700 group-hover:ring-2 ring-brand-green transition-all">
+        <div className="absolute w-full h-full backface-hidden flex items-center justify-center rounded-lg shadow-lg bg-gray-700 group-hover:ring-2 ring-brand-green transition-all">
           <CardBackIcon className="w-1/2 h-1/2 text-brand-green opacity-80" />
         </div>
         
         {/* --- KARTENVORDERSEITE --- */}
         {/* Differenzierte Stile für aufgedeckte (aber nicht gefundene) und gefundene Paare. */}
         <div className={`
-          absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] 
+          absolute w-full h-full backface-hidden rotate-y-180
           flex items-center justify-center rounded-lg shadow-lg transition-all
           ${isMatched 
             ? 'bg-brand-green' // Stil für ein gefundenes Paar
