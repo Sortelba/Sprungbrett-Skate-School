@@ -8,7 +8,7 @@ import {
   CardBackIcon,
 } from '../constants/icons';
 import { Link } from 'react-router-dom';
-// Importiert die neue, zentrale Sound-Funktion
+// Importiert die zentrale Sound-Funktion
 import { playSound } from '../utils/playSound';
 
 type Card = {
@@ -85,6 +85,7 @@ const SkateMemoryGamePage: React.FC = () => {
       
       // Prüft auf Gewinnbedingung
       if (newMatchedPairs.length === difficulties[difficulty].pairs) {
+        // --- SOUND: GAME WON ---
         // Spielt den Gewinn-Sound sofort ab, um Probleme mit Browser-Richtlinien zu vermeiden.
         playSound('/sounds/gameover.mp3');
       }
