@@ -19,8 +19,8 @@ const PLAYER_HEIGHT = 60;
 const PLAYER_X = 50;
 
 // --- DIFFICULTY ADJUSTMENTS ---
-// Initial speed is set to 2 as requested for a slightly faster start.
-const INITIAL_SPEED = 2; 
+// Initial speed is set to 3 as requested.
+const INITIAL_SPEED = 3; 
 const MAX_SPEED = 6; // Max speed can be slightly higher now
 const SPEED_INCREMENT = 1; // Speed increases by 1 level at each threshold
 const SCORE_THRESHOLD = 150;
