@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-// FIX: Imported missing SkaterSideProfileIcon
-import { SkaterSideProfileIcon, ConeIcon } from '../constants/icons';
+import { 
+    SkaterSideProfileIcon, 
+    ConeIcon,
+    TrashCanIcon,
+    CactusIcon,
+    FlowerPotIcon,
+} from '../constants/icons';
 
 // --- GAME CONSTANTS ---
 const GAME_WIDTH = 800;
@@ -13,15 +18,28 @@ const PLAYER_WIDTH = 40;
 const PLAYER_HEIGHT = 60;
 const PLAYER_X = 50;
 
-const OBSTACLE_WIDTH = 30;
-const OBSTACLE_HEIGHT = 50;
-
-const INITIAL_SPEED = 5;
-const MAX_SPEED = INITIAL_SPEED * 1.25; // 25% max speed increase
-const SPEED_INCREMENT = INITIAL_SPEED * 0.05; // 5% speed increase
+// --- DIFFICULTY ADJUSTMENTS ---
+// Lower initial speed for a gentler start.
+const INITIAL_SPEED = 4; 
+const MAX_SPEED = INITIAL_SPEED * 1.5; // Increased max speed slightly for better late-game scaling
+const SPEED_INCREMENT = INITIAL_SPEED * 0.05; 
 const SCORE_THRESHOLD = 150;
 
-type Obstacle = { x: number; scored: boolean };
+// --- OBSTACLE TYPES ---
+// Define different obstacles with their specific icons and collision sizes.
+const obstacleTypes = [
+    { Icon: ConeIcon, width: 30, height: 50 },
+    { Icon: TrashCanIcon, width: 40, height: 55 },
+    { Icon: CactusIcon, width: 45, height: 60 },
+    { Icon: FlowerPotIcon, width: 35, height: 40 },
+];
+
+// Define the shape of an obstacle object in the game state.
+type Obstacle = { 
+    x: number; 
+    scored: boolean; 
+    typeIndex: number; // Index to reference the obstacleTypes array
+};
 
 const SkateJumpGamePage: React.FC = () => {
     // --- STATE MANAGEMENT ---
@@ -29,64 +47,79 @@ const SkateJumpGamePage: React.FC = () => {
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(() => Number(localStorage.getItem('skateJumpHighScore')) || 0);
     
-    // Using state for rendering, refs for game logic values that change every frame
+    // State for rendering positions and objects.
     const [playerTop, setPlayerTop] = useState(GROUND_Y - PLAYER_HEIGHT);
     const [currentObstacles, setCurrentObstacles] = useState<Obstacle[]>([]);
     
+    // Refs for game logic values that change every frame without causing re-renders.
     const playerVelocityY = useRef(0);
     const gameSpeed = useRef(INITIAL_SPEED);
     const obstacleTimer = useRef(0);
-    const frameId = useRef<number>();
+    const frameId = useRef<number | null>(null);
+
+    // --- SOUND EFFECTS ---
+    // Refs to hold the Audio objects. This prevents them from being re-created on every render.
+    // HINWEIS: Du musst Sound-Dateien (z.B. jump.wav, score.wav, gameover.wav) 
+    // im Ordner 'public/sounds/' ablegen, damit diese funktionieren.
+    const jumpSound = useRef(new Audio('/sounds/jump.wav'));
+    const scoreSound = useRef(new Audio('/sounds/score.wav'));
+    const gameOverSound = useRef(new Audio('/sounds/gameover.wav'));
+
 
     // --- GAME LOGIC ---
-    // FIX: Add state setters to the dependency array to satisfy exhaustive-deps linting rules, which may be causing the misleading error.
     const resetGame = useCallback(() => {
         setPlayerTop(GROUND_Y - PLAYER_HEIGHT);
         playerVelocityY.current = 0;
         setCurrentObstacles([]);
         gameSpeed.current = INITIAL_SPEED;
-        obstacleTimer.current = 100; // Initial delay for first obstacle
+        obstacleTimer.current = 120; // Increased initial delay for the first obstacle.
         setScore(0);
         setGameState('playing');
-    // FIX: State setters are stable and do not need to be in the dependency array. An empty array makes this function stable.
-    }, [setGameState, setPlayerTop, setCurrentObstacles, setScore]);
+    }, []);
     
     const gameLoop = useCallback(() => {
-        // Player physics
+        // Player physics: Apply gravity and update position.
         playerVelocityY.current += GRAVITY;
         let newPlayerY = playerTop + playerVelocityY.current;
 
+        // Prevent player from falling through the ground.
         if (newPlayerY >= GROUND_Y - PLAYER_HEIGHT) {
             newPlayerY = GROUND_Y - PLAYER_HEIGHT;
             playerVelocityY.current = 0;
         }
         setPlayerTop(newPlayerY);
 
-        // Obstacle management
+        // Obstacle management: Spawning new obstacles.
         let newObstacles = [...currentObstacles];
         obstacleTimer.current -= 1;
         if (obstacleTimer.current <= 0) {
-            newObstacles.push({ x: GAME_WIDTH, scored: false });
-            // Spawn next obstacle faster at higher speeds
-            const baseInterval = 120 / gameSpeed.current;
-            obstacleTimer.current = baseInterval + (Math.random() * 60 / gameSpeed.current);
+            // Randomly select an obstacle type to spawn.
+            const typeIndex = Math.floor(Math.random() * obstacleTypes.length);
+            newObstacles.push({ x: GAME_WIDTH, scored: false, typeIndex: typeIndex });
+            
+            // Increased the interval between obstacles for easier gameplay.
+            const baseInterval = 180 / gameSpeed.current; 
+            const randomInterval = Math.random() * 100 / gameSpeed.current;
+            obstacleTimer.current = baseInterval + randomInterval;
         }
 
         let newScore = score;
         let collisionDetected = false;
 
+        // Move obstacles, check for scoring and collisions.
         newObstacles = newObstacles.map(obstacle => {
+            const type = obstacleTypes[obstacle.typeIndex];
             const newX = obstacle.x - gameSpeed.current;
 
-            // Scoring
-            if (!obstacle.scored && newX + OBSTACLE_WIDTH < PLAYER_X) {
+            // Scoring: Add points when the player passes an obstacle.
+            if (!obstacle.scored && newX + type.width < PLAYER_X) {
                 newScore += 10;
                 return { ...obstacle, x: newX, scored: true };
             }
 
-            // Collision detection
+            // Collision detection using bounding boxes.
             const playerRect = { x: PLAYER_X, y: newPlayerY, width: PLAYER_WIDTH, height: PLAYER_HEIGHT };
-            const obstacleRect = { x: newX, y: GROUND_Y - OBSTACLE_HEIGHT, width: OBSTACLE_WIDTH, height: OBSTACLE_HEIGHT };
+            const obstacleRect = { x: newX, y: GROUND_Y - type.height, width: type.width, height: type.height };
             if (
                 playerRect.x < obstacleRect.x + obstacleRect.width &&
                 playerRect.x + playerRect.width > obstacleRect.x &&
@@ -96,22 +129,27 @@ const SkateJumpGamePage: React.FC = () => {
                 collisionDetected = true;
             }
             return { ...obstacle, x: newX };
-        }).filter(o => o.x + OBSTACLE_WIDTH > 0); // Remove off-screen obstacles
+        }).filter(o => o.x + obstacleTypes[o.typeIndex].width > 0); // Remove off-screen obstacles.
         
         setCurrentObstacles(newObstacles);
 
-        // Update score and check difficulty
+        // Update score and increase difficulty when thresholds are met.
         if (newScore > score) {
             setScore(newScore);
-             // Check if a score threshold has been crossed
-            if (gameSpeed.current < MAX_SPEED && Math.floor(newScore / SCORE_THRESHOLD) > Math.floor((newScore - 10) / SCORE_THRESHOLD)) {
+            // Play scoring sound effect
+            scoreSound.current.currentTime = 0; // Rewind to start to allow rapid playing
+            scoreSound.current.play();
+
+            if (gameSpeed.current < MAX_SPEED && Math.floor(newScore / SCORE_THRESHOLD) > Math.floor(score / SCORE_THRESHOLD)) {
                 gameSpeed.current = Math.min(MAX_SPEED, gameSpeed.current + SPEED_INCREMENT);
             }
         }
         
-        // Handle Game Over
+        // Handle Game Over state.
         if (collisionDetected) {
             setGameState('gameOver');
+            // Play game over sound effect
+            gameOverSound.current.play();
             if (newScore > highScore) {
                 setHighScore(newScore);
                 localStorage.setItem('skateJumpHighScore', String(newScore));
@@ -119,9 +157,7 @@ const SkateJumpGamePage: React.FC = () => {
         } else {
             frameId.current = requestAnimationFrame(gameLoop);
         }
-    // FIX: Added missing state setters to dependency array to prevent stale closures, which was likely causing the misleading error.
-    // FIX: Cleaned up duplicate dependencies. Setters are stable and can be omitted, but including them satisfies exhaustive-deps lint rule.
-    }, [playerTop, currentObstacles, score, highScore, setGameState, setHighScore, setPlayerTop, setCurrentObstacles, setScore]);
+    }, [playerTop, currentObstacles, score, highScore]);
     
     // --- EVENT HANDLERS & EFFECTS ---
     const handleJump = useCallback(() => {
@@ -129,9 +165,13 @@ const SkateJumpGamePage: React.FC = () => {
             resetGame();
         } else if (gameState === 'playing' && playerTop >= GROUND_Y - PLAYER_HEIGHT) {
             playerVelocityY.current = JUMP_FORCE;
+            // Play jump sound effect
+            jumpSound.current.currentTime = 0; // Rewind to start for quick jumps
+            jumpSound.current.play();
         }
     }, [gameState, resetGame, playerTop]);
 
+    // Main game loop effect.
     useEffect(() => {
         if (gameState === 'playing') {
             frameId.current = requestAnimationFrame(gameLoop);
@@ -143,6 +183,7 @@ const SkateJumpGamePage: React.FC = () => {
         };
     }, [gameState, gameLoop]);
     
+    // Keyboard input listener.
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.code === 'Space') {
@@ -177,12 +218,16 @@ const SkateJumpGamePage: React.FC = () => {
                     <SkaterSideProfileIcon className="w-full h-full text-white" />
                 </div>
                 
-                {/* Obstacles */}
-                {currentObstacles.map((obstacle, index) => (
-                    <div key={index} className="absolute" style={{ width: OBSTACLE_WIDTH, height: OBSTACLE_HEIGHT, left: obstacle.x, top: GROUND_Y - OBSTACLE_HEIGHT }}>
-                        <ConeIcon className="w-full h-full text-brand-green" />
-                    </div>
-                ))}
+                {/* Render randomly chosen obstacles */}
+                {currentObstacles.map((obstacle, index) => {
+                    const type = obstacleTypes[obstacle.typeIndex];
+                    const ObstacleIcon = type.Icon;
+                    return (
+                        <div key={index} className="absolute" style={{ width: type.width, height: type.height, left: obstacle.x, top: GROUND_Y - type.height }}>
+                           <ObstacleIcon className="w-full h-full text-brand-green" />
+                        </div>
+                    );
+                })}
 
                 {/* Game State Overlays */}
                 {gameState === 'waiting' && (
