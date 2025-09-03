@@ -5,12 +5,12 @@ import { CrossedDecksIcon, SkateWheelIcon } from '../constants/icons';
 type Player = 'X' | 'O';
 type SquareValue = Player | null;
 
-// Helper function to determine the winner
+// Hilfsfunktion, um den Gewinner zu ermitteln
 const calculateWinner = (squares: SquareValue[]): Player | null => {
   const lines = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-    [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
-    [0, 4, 8], [2, 4, 6],             // diagonals
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // Reihen
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // Spalten
+    [0, 4, 8], [2, 4, 6],             // Diagonalen
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
@@ -21,7 +21,7 @@ const calculateWinner = (squares: SquareValue[]): Player | null => {
   return null;
 };
 
-// Reusable Square component
+// Wiederverwendbare Komponente für ein einzelnes Spielfeld
 const Square: React.FC<{ value: SquareValue, onClick: () => void }> = ({ value, onClick }) => (
   <button
     className="aspect-square w-full h-full flex items-center justify-center bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-green"
@@ -37,26 +37,45 @@ const TicTacToeGamePage: React.FC = () => {
   const [board, setBoard] = useState<SquareValue[]>(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
   const [scores, setScores] = useState({ X: 0, O: 0 });
+  const winner = calculateWinner(board);
+  const isTie = !winner && board.every(Boolean);
 
-  // Load scores from localStorage on component mount
+  // Lade Punktestände aus dem localStorage, wenn die Komponente geladen wird
   useEffect(() => {
     const savedScores = localStorage.getItem('ticTacToeScores');
     if (savedScores) {
       setScores(JSON.parse(savedScores));
     }
   }, []);
+  
+  // Aktualisiere den Punktestand, wenn sich ein Gewinner ergibt
+  useEffect(() => {
+    if (winner) {
+      const newScores = { ...scores, [winner]: scores[winner] + 1 };
+      setScores(newScores);
+      localStorage.setItem('ticTacToeScores', JSON.stringify(newScores));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [winner]);
 
-  const winner = calculateWinner(board);
-  const isTie = !winner && board.every(Boolean);
-
+  // Behandelt den Klick auf ein Spielfeld
   const handleClick = (i: number) => {
     if (winner || board[i]) {
-      return;
+      return; // Beendet die Funktion, wenn schon ein Gewinner feststeht oder das Feld besetzt ist
     }
     const newBoard = [...board];
     newBoard[i] = xIsNext ? 'X' : 'O';
     setBoard(newBoard);
     setXIsNext(!xIsNext);
+
+    // Prüft *sofort* nach dem Zug auf einen Gewinner oder ein Unentschieden
+    const newWinner = calculateWinner(newBoard);
+    const newIsTie = !newWinner && newBoard.every(Boolean);
+
+    // Spielt den Sound direkt hier ab, um die Browser-Autoplay-Richtlinie zu umgehen
+    if (newWinner || newIsTie) {
+        new Audio('/sounds/gameover.mp3').play().catch(e => console.error("Error playing game over sound:", e));
+    }
   };
 
   const handleNewGame = () => {
@@ -70,25 +89,6 @@ const TicTacToeGamePage: React.FC = () => {
     localStorage.setItem('ticTacToeScores', JSON.stringify(newScores));
     handleNewGame();
   };
-
-  // Update score, save to localStorage, and play sound when game ends
-  useEffect(() => {
-    // Wenn es einen Gewinner oder ein Unentschieden gibt, ist das Spiel vorbei.
-    if (winner || isTie) {
-        // Spielt den Game-Over-Sound ab.
-        // Ein neues Audio-Objekt wird direkt hier erstellt, was zuverlässiger ist.
-        new Audio('/sounds/gameover.mp3').play().catch(e => console.error("Error playing game over sound:", e));
-        
-        // Wenn es einen Gewinner gibt, aktualisiere den Punktestand.
-        if(winner) {
-            const newScores = { ...scores, [winner]: scores[winner] + 1 };
-            setScores(newScores);
-            localStorage.setItem('ticTacToeScores', JSON.stringify(newScores));
-        }
-    }
-    // Dieser Effekt wird immer dann ausgeführt, wenn sich der 'winner' oder 'isTie'-Status ändert.
-  }, [winner, isTie]);
-
 
   let status;
   if (winner) {
@@ -111,7 +111,6 @@ const TicTacToeGamePage: React.FC = () => {
         SKATE <span className="text-brand-green">TIC-TAC-TOE</span>
       </h1>
       
-      {/* Score Board */}
       <div className="flex justify-around w-full max-w-sm bg-gray-800 p-4 rounded-lg shadow-inner mb-6 text-xl font-bold">
         <div className="text-center">
             <span className="text-white">Spieler X (Decks)</span>
@@ -123,7 +122,6 @@ const TicTacToeGamePage: React.FC = () => {
         </div>
       </div>
       
-      {/* Game Board */}
       <div className="w-full max-w-sm mb-6">
         <div className="grid grid-cols-3 gap-3">
           {board.map((_, i) => (
@@ -132,17 +130,19 @@ const TicTacToeGamePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Status and Controls */}
-      <div className="text-center">
-        <div className={`text-2xl font-bold mb-4 ${winner ? 'text-brand-green' : 'text-white'}`}>
+      <div className="text-center space-y-4">
+        <div className={`text-2xl font-bold ${winner ? 'text-brand-green' : 'text-white'}`}>
           {status}
         </div>
         {(winner || isTie) && (
-          <button onClick={handleNewGame} className="w-full sm:w-auto bg-brand-green text-gray-900 font-bold py-3 px-10 rounded-md hover:bg-white transition-all duration-300 transform hover:scale-105 mb-4">
+          <button onClick={handleNewGame} className="w-full sm:w-auto bg-brand-green text-gray-900 font-bold py-3 px-10 rounded-md hover:bg-white transition-all duration-300 transform hover:scale-105">
             Nochmal spielen
           </button>
         )}
-        <button onClick={handleResetScores} className="text-gray-500 hover:text-white text-sm transition-colors">
+        <button 
+          onClick={handleResetScores} 
+          className="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 text-gray-300 font-semibold py-2 px-6 rounded-md transition-colors"
+        >
             Punktestand zurücksetzen
         </button>
       </div>

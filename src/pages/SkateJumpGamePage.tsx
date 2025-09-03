@@ -19,14 +19,12 @@ const PLAYER_HEIGHT = 60;
 const PLAYER_X = 50;
 
 // --- DIFFICULTY ADJUSTMENTS ---
-// Initial speed is set to 3 as requested.
 const INITIAL_SPEED = 3; 
-const MAX_SPEED = 6; // Max speed can be slightly higher now
-const SPEED_INCREMENT = 1; // Speed increases by 1 level at each threshold
+const MAX_SPEED = 6;
+const SPEED_INCREMENT = 1;
 const SCORE_THRESHOLD = 150;
 
 // --- OBSTACLE TYPES ---
-// Define different obstacles with their specific icons and collision sizes.
 const obstacleTypes = [
     { Icon: ConeIcon, width: 30, height: 50 },
     { Icon: TrashCanIcon, width: 40, height: 55 },
@@ -34,22 +32,21 @@ const obstacleTypes = [
     { Icon: FlowerPotIcon, width: 35, height: 40 },
 ];
 
-// Define the shape of an obstacle object in the game state.
 type Obstacle = { 
     x: number; 
     scored: boolean; 
-    typeIndex: number; // Index to reference the obstacleTypes array
+    typeIndex: number;
 };
 
 // --- SOUND HELPER FUNCTION ---
-// This function creates a new Audio object and plays it. This is more reliable
-// across different browsers than creating a single audio object instance upfront.
+// Diese Funktion erstellt bei jedem Aufruf ein neues Audio-Objekt und spielt es ab.
+// Das ist zuverlässiger als das Vorladen, besonders im Umgang mit Browser-Autoplay-Richtlinien.
 const playSound = (soundFile: string) => {
     try {
         const audio = new Audio(soundFile);
-        audio.play().catch(e => console.error(`Error playing sound ${soundFile}:`, e));
+        audio.play().catch(e => console.error(`Fehler beim Abspielen von ${soundFile}:`, e));
     } catch (error) {
-        console.error(`Could not create audio for ${soundFile}:`, error);
+        console.error(`Audio-Objekt für ${soundFile} konnte nicht erstellt werden:`, error);
     }
 };
 
@@ -60,11 +57,9 @@ const SkateJumpGamePage: React.FC = () => {
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(() => Number(localStorage.getItem('skateJumpHighScore')) || 0);
     
-    // State for rendering positions and objects.
     const [playerTop, setPlayerTop] = useState(GROUND_Y - PLAYER_HEIGHT);
     const [currentObstacles, setCurrentObstacles] = useState<Obstacle[]>([]);
     
-    // Refs for game logic values that change every frame without causing re-renders.
     const playerVelocityY = useRef(0);
     const gameSpeed = useRef(INITIAL_SPEED);
     const obstacleTimer = useRef(0);
@@ -76,32 +71,27 @@ const SkateJumpGamePage: React.FC = () => {
         playerVelocityY.current = 0;
         setCurrentObstacles([]);
         gameSpeed.current = INITIAL_SPEED;
-        obstacleTimer.current = 120; // Initial delay for the first obstacle.
+        obstacleTimer.current = 120;
         setScore(0);
         setGameState('playing');
     }, []);
     
     const gameLoop = useCallback(() => {
-        // Player physics: Apply gravity and update position.
         playerVelocityY.current += GRAVITY;
         let newPlayerY = playerTop + playerVelocityY.current;
 
-        // Prevent player from falling through the ground.
         if (newPlayerY >= GROUND_Y - PLAYER_HEIGHT) {
             newPlayerY = GROUND_Y - PLAYER_HEIGHT;
             playerVelocityY.current = 0;
         }
         setPlayerTop(newPlayerY);
 
-        // Obstacle management: Spawning new obstacles.
         let newObstacles = [...currentObstacles];
         obstacleTimer.current -= 1;
         if (obstacleTimer.current <= 0) {
-            // Randomly select an obstacle type to spawn.
             const typeIndex = Math.floor(Math.random() * obstacleTypes.length);
             newObstacles.push({ x: GAME_WIDTH, scored: false, typeIndex: typeIndex });
             
-            // The interval between obstacles. A larger base value means more space.
             const baseInterval = 220 / gameSpeed.current; 
             const randomInterval = Math.random() * 120 / gameSpeed.current;
             obstacleTimer.current = baseInterval + randomInterval;
@@ -110,18 +100,15 @@ const SkateJumpGamePage: React.FC = () => {
         let newScore = score;
         let collisionDetected = false;
 
-        // Move obstacles, check for scoring and collisions.
         newObstacles = newObstacles.map(obstacle => {
             const type = obstacleTypes[obstacle.typeIndex];
             const newX = obstacle.x - gameSpeed.current;
 
-            // Scoring: Add points when the player passes an obstacle.
             if (!obstacle.scored && newX + type.width < PLAYER_X) {
                 newScore += 10;
                 return { ...obstacle, x: newX, scored: true };
             }
 
-            // Collision detection using bounding boxes.
             const playerRect = { x: PLAYER_X, y: newPlayerY, width: PLAYER_WIDTH, height: PLAYER_HEIGHT };
             const obstacleRect = { x: newX, y: GROUND_Y - type.height, width: type.width, height: type.height };
             if (
@@ -133,17 +120,14 @@ const SkateJumpGamePage: React.FC = () => {
                 collisionDetected = true;
             }
             return { ...obstacle, x: newX };
-        }).filter(o => o.x + obstacleTypes[o.typeIndex].width > 0); // Remove off-screen obstacles.
+        }).filter(o => o.x + obstacleTypes[o.typeIndex].width > 0);
         
         setCurrentObstacles(newObstacles);
 
-        // Update score and increase difficulty when thresholds are met.
         if (newScore > score) {
             setScore(newScore);
-            // Play scoring sound effect
             playSound('/sounds/score.mp3');
 
-            // Check if a score threshold is crossed to increase speed
             const oldLevel = Math.floor(score / SCORE_THRESHOLD);
             const newLevel = Math.floor(newScore / SCORE_THRESHOLD);
             if (newLevel > oldLevel) {
@@ -151,10 +135,8 @@ const SkateJumpGamePage: React.FC = () => {
             }
         }
         
-        // Handle Game Over state.
         if (collisionDetected) {
             setGameState('gameOver');
-            // Play game over sound effect
             playSound('/sounds/gameover.mp3');
             if (newScore > highScore) {
                 setHighScore(newScore);
@@ -169,14 +151,17 @@ const SkateJumpGamePage: React.FC = () => {
     const handleJump = useCallback(() => {
         if (gameState === 'waiting') {
             resetGame();
-        } else if (gameState === 'playing' && playerTop >= GROUND_Y - PLAYER_HEIGHT - 1) { // -1 allows for small floating point inaccuracies
+        } else if (gameState === 'playing' && playerTop >= GROUND_Y - PLAYER_HEIGHT - 1) {
             playerVelocityY.current = JUMP_FORCE;
-            // Play jump sound effect
             playSound('/sounds/jump.mp3');
         }
     }, [gameState, resetGame, playerTop]);
 
-    // Main game loop effect.
+    const handleResetHighScore = () => {
+        setHighScore(0);
+        localStorage.removeItem('skateJumpHighScore');
+    };
+
     useEffect(() => {
         if (gameState === 'playing') {
             frameId.current = requestAnimationFrame(gameLoop);
@@ -188,7 +173,6 @@ const SkateJumpGamePage: React.FC = () => {
         };
     }, [gameState, gameLoop]);
     
-    // Keyboard input listener.
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.code === 'Space') {
@@ -207,7 +191,16 @@ const SkateJumpGamePage: React.FC = () => {
             </h1>
             <div className="flex justify-between w-full max-w-[800px] mb-4 text-2xl font-bold">
                 <span>Score: <span className="text-brand-green">{score}</span></span>
-                <span>High Score: <span className="text-brand-green">{highScore}</span></span>
+                <span className="flex items-center gap-4">
+                    High Score: <span className="text-brand-green">{highScore}</span>
+                    <button 
+                        onClick={handleResetHighScore}
+                        className="text-xs bg-red-800 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+                        title="Highscore zurücksetzen"
+                    >
+                        Reset
+                    </button>
+                </span>
             </div>
             
             <div 
@@ -215,15 +208,10 @@ const SkateJumpGamePage: React.FC = () => {
                 className="relative bg-gray-800 rounded-lg overflow-hidden cursor-pointer border-2 border-gray-700 w-full"
                 style={{ maxWidth: GAME_WIDTH, height: GAME_HEIGHT }}
             >
-                {/* Ground */}
                 <div className="absolute bottom-0 left-0 w-full h-[50px] bg-gray-700 border-t-4 border-gray-600"></div>
-
-                {/* Player */}
                 <div className="absolute transition-transform duration-0" style={{ width: PLAYER_WIDTH, height: PLAYER_HEIGHT, left: PLAYER_X, top: playerTop }}>
                     <SkaterSideProfileIcon className="w-full h-full text-white" />
                 </div>
-                
-                {/* Render randomly chosen obstacles */}
                 {currentObstacles.map((obstacle, index) => {
                     const type = obstacleTypes[obstacle.typeIndex];
                     const ObstacleIcon = type.Icon;
@@ -233,8 +221,6 @@ const SkateJumpGamePage: React.FC = () => {
                         </div>
                     );
                 })}
-
-                {/* Game State Overlays */}
                 {gameState === 'waiting' && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                         <p className="text-3xl font-bold text-white animate-pulse">Klicken oder Leertaste drücken zum Starten</p>

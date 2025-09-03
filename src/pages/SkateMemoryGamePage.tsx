@@ -9,24 +9,20 @@ import {
 } from '../constants/icons';
 import { Link } from 'react-router-dom';
 
-// Definiert die Struktur einer einzelnen Spielkarte
 type Card = {
   id: number;
   icon: React.FC<{ className?: string }>;
-  key: string; // Eindeutiger Name für das Paar, z.B., 'skateboard'
+  key: string;
 };
 
-// Definiert die Typen für die Schwierigkeitsgrade
 type Difficulty = 'easy' | 'medium' | 'hard';
 
-// Konfiguration für die verschiedenen Schwierigkeitsgrade
 const difficulties: Record<Difficulty, { pairs: number; label: string; gridClass: string }> = {
   easy: { pairs: 6, label: 'Leicht', gridClass: 'grid-cols-4' },
   medium: { pairs: 12, label: 'Mittel', gridClass: 'grid-cols-6' },
   hard: { pairs: 24, label: 'Schwer', gridClass: 'grid-cols-8' },
 };
 
-// Alle verfügbaren Icons für das Spiel
 const allCardIcons = [
   { icon: SkateboardIcon, key: 'skateboard' }, { icon: HelmetIcon, key: 'helmet' }, 
   { icon: WheelIcon, key: 'wheel' }, { icon: ShoeIcon, key: 'shoe' }, 
@@ -42,26 +38,23 @@ const allCardIcons = [
   { icon: HeartIcon, key: 'heart' }, { icon: LightningIcon, key: 'lightning' },
 ];
 
-// Funktion, um den Kartenstapel basierend auf dem Schwierigkeitsgrad zu erstellen und zu mischen
 const createShuffledDeck = (pairCount: number): Card[] => {
   const selectedIcons = allCardIcons.slice(0, pairCount);
-  const deck = [...selectedIcons, ...selectedIcons]; // Verdoppelt die Icons, um Paare zu erzeugen
+  const deck = [...selectedIcons, ...selectedIcons];
   return deck
-    .map((card, index) => ({ ...card, id: index })) // Fügt jeder Karte eine eindeutige ID hinzu
-    .sort(() => Math.random() - 0.5); // Mischt das Deck zufällig
+    .map((card, index) => ({ ...card, id: index }))
+    .sort(() => Math.random() - 0.5);
 };
 
 const SkateMemoryGamePage: React.FC = () => {
-  // Zustände für das Spiel
   const [gameState, setGameState] = useState<'selecting' | 'playing'>('selecting');
   const [difficulty, setDifficulty] = useState<Difficulty>('easy');
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
   const [matchedPairs, setMatchedPairs] = useState<string[]>([]);
   const [moves, setMoves] = useState(0);
-  const [isLocked, setIsLocked] = useState(false); // Sperrt das Spielfeld während der Prüfung eines Paares
+  const [isLocked, setIsLocked] = useState(false);
 
-  // Startet das Spiel mit dem gewählten Schwierigkeitsgrad
   const startGame = (level: Difficulty) => {
     setDifficulty(level);
     setCards(createShuffledDeck(difficulties[level].pairs));
@@ -72,36 +65,41 @@ const SkateMemoryGamePage: React.FC = () => {
     setGameState('playing');
   };
   
-  // Kehrt zur Schwierigkeitsauswahl zurück
   const backToSelection = () => {
     setGameState('selecting');
   };
   
-  // Effekt, der die Logik zur Überprüfung von Paaren auslöst
   useEffect(() => {
     if (gameState !== 'playing' || flippedIndices.length < 2) return;
 
-    setIsLocked(true); // Sperrt das Spielfeld
+    setIsLocked(true);
     const [firstIndex, secondIndex] = flippedIndices;
     const firstCard = cards[firstIndex];
     const secondCard = cards[secondIndex];
     
     if (firstCard.key === secondCard.key) {
-      // Es ist ein Paar!
-      setMatchedPairs(prev => [...prev, firstCard.key]);
+      const newMatchedPairs = [...matchedPairs, firstCard.key];
+      setMatchedPairs(newMatchedPairs);
+      
+      // Prüft auf Gewinnbedingung
+      if (newMatchedPairs.length === difficulties[difficulty].pairs) {
+        // Spielt den Sound nach einer kurzen Verzögerung ab, damit die letzte Karte sich umdrehen kann
+        setTimeout(() => {
+          new Audio('/sounds/gameover.mp3').play().catch(e => console.error("Win sound error:", e));
+        }, 500);
+      }
+      
       setFlippedIndices([]);
       setIsLocked(false);
     } else {
-      // Kein Paar, Karten nach einer Verzögerung wieder umdrehen
       setTimeout(() => {
         setFlippedIndices([]);
         setIsLocked(false);
       }, 1200);
     }
-    setMoves(prev => prev + 1); // Zählt den Zug
-  }, [flippedIndices, cards, gameState]);
+    setMoves(prev => prev + 1);
+  }, [flippedIndices, cards, gameState, matchedPairs, difficulty]);
   
-  // Behandelt den Klick auf eine Karte
   const handleCardClick = (index: number) => {
     if (isLocked || flippedIndices.length >= 2 || flippedIndices.includes(index) || matchedPairs.includes(cards[index].key)) {
       return;
@@ -109,12 +107,8 @@ const SkateMemoryGamePage: React.FC = () => {
     setFlippedIndices(prev => [...prev, index]);
   };
   
-  // Prüft, ob das Spiel gewonnen wurde
   const isGameWon = gameState === 'playing' && matchedPairs.length === difficulties[difficulty].pairs;
 
-  // --- RENDER-FUNKTIONEN ---
-
-  // Ansicht für die Schwierigkeitsauswahl
   if (gameState === 'selecting') {
     return (
       <div className="max-w-4xl mx-auto py-12 text-center animate-fade-in-up">
@@ -140,7 +134,6 @@ const SkateMemoryGamePage: React.FC = () => {
     );
   }
 
-  // Ansicht für das laufende Spiel
   return (
     <div className="max-w-6xl mx-auto py-12 text-center animate-fade-in-up">
       <h1 className="text-4xl font-black mb-4 tracking-tighter">SKATE <span className="text-brand-green">MEMORY</span></h1>
