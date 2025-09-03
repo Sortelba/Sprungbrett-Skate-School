@@ -145,6 +145,7 @@ const SkateJumpGamePage: React.FC = () => {
         } else if (gameState === 'playing' && playerTop >= GROUND_Y - PLAYER_HEIGHT - 1) {
             playerVelocityY.current = JUMP_FORCE;
             // --- SOUND: JUMP ---
+            // This line plays the sound effect when the player jumps.
             audioManager.playSound('/sounds/jump.mp3');
         }
     }, [gameState, resetGame, playerTop]);
