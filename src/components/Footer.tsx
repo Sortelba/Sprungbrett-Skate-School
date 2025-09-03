@@ -20,8 +20,8 @@ const Footer: React.FC = () => {
             <div className="flex space-x-4">
                {/* Links zu den rechtlichen Seiten */}
                <Link to="/impressum" className="text-gray-400 hover:text-brand-green transition-colors duration-200">Impressum</Link>
-               <Link to="/game" className="text-gray-400 hover:text-brand-green transition-colors duration-200">Spiel</Link>
                <Link to="/agb" className="text-gray-400 hover:text-brand-green transition-colors duration-200">AGB</Link>
+               <Link to="/game" className="text-gray-400 hover:text-brand-green transition-colors duration-200">MiniGame</Link>
             </div>
           </div>
           

@@ -206,3 +206,138 @@ export const TruckIcon: React.FC<IconProps> = (props) => (
     <circle cx="17" cy="17" r="2" />
   </svg>
 );
+
+export const RampIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M2 16c0-4 4-8 8-8s8 4 8 8" />
+    <path d="M2 16h16" />
+  </svg>
+);
+
+export const RailIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M4 8h16" />
+    <path d="M6 8v8" />
+    <path d="M18 8v8" />
+  </svg>
+);
+
+export const TrophyIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 2c2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5 2.2-5 5-5z" />
+    <path d="M12 12v10" />
+    <path d="M8 22h8" />
+    <path d="M5 12H3c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2h2" />
+    <path d="M19 12h2c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-2" />
+  </svg>
+);
+
+export const StarIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+  </svg>
+);
+
+export const CameraIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M2 8a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V8z" />
+    <circle cx="12" cy="13" r="4" />
+    <path d="M18 8V6" />
+  </svg>
+);
+
+export const ConeIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 2L4 22h16L12 2z" />
+    <path d="M6 18h12" />
+    <path d="M8 14h8" />
+  </svg>
+);
+
+export const GriptapeIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M3 3h18v18H3z" fill="currentColor" fillOpacity="0.2" />
+    <circle cx="8" cy="8" r="1" fill="currentColor" />
+    <circle cx="16" cy="16" r="1" fill="currentColor" />
+    <circle cx="8" cy="16" r="1" fill="currentColor" />
+    <circle cx="16" cy="8" r="1" fill="currentColor" />
+    <circle cx="12" cy="12" r="1" fill="currentColor" />
+  </svg>
+);
+
+export const BoltIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 2l-2 8h4l-2 8" />
+  </svg>
+);
+
+export const KingpinIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 2v20" />
+    <path d="M8 4h8" />
+    <path d="M8 20h8" />
+  </svg>
+);
+
+export const BushingIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M6 9h12v6H6z" />
+  </svg>
+);
+
+export const RiserIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M4 14h16v2H4z" />
+    <path d="M4 10h16v2H4z" />
+  </svg>
+);
+
+export const DeckIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M2 8c0-2 2-4 4-4h12c2 0 4 2 4 4v8c0 2-2 4-4 4H6c-2 0-4-2-4-4V8z" />
+  </svg>
+);
+
+export const SkaterIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="12" cy="6" r="2" />
+    <path d="M12 8v6" />
+    <path d="M10 14h4" />
+    <path d="M8 20l-2-4h12l-2 4" />
+  </svg>
+);
+
+export const HandIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M18 18h-6a2 2 0 01-2-2V8a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2z" />
+    <path d="M10 10V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2a2 2 0 002-2v-2" />
+  </svg>
+);
+
+export const FireIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 2c-3 3-5 5-5 9s2 8 5 8 5-4 5-8-2-6-5-9z" />
+    <path d="M12 12c-2 0-3 1-3 3s1 3 3 3 3-1 3-3-1-3-3-3z" />
+  </svg>
+);
+
+export const SkullIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 2a10 10 0 00-10 10v6a2 2 0 002 2h16a2 2 0 002-2v-6A10 10 0 0012 2z" />
+    <circle cx="9" cy="12" r="1" />
+    <circle cx="15" cy="12" r="1" />
+    <path d="M8 16h8" />
+  </svg>
+);
+
+export const HeartIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+  </svg>
+);
+
+export const LightningIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+  </svg>
+);
