@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HeartIcon, LightningIcon, GameBoardIcon } from '../constants/icons';
+import { HeartIcon, LightningIcon, GameBoardIcon, DiceIcon } from '../constants/icons';
 
 const MiniGamePortalPage: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const MiniGamePortalPage: React.FC = () => {
       </h1>
       <p className="text-gray-400 mb-12 text-lg">Wähle ein Spiel, um eine Pause einzulegen.</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Card for Memory Game */}
         <Link
           to="/minigames/memory"
@@ -46,7 +46,7 @@ const MiniGamePortalPage: React.FC = () => {
         {/* Card for Tic-Tac-Toe Game */}
         <Link
           to="/minigames/tictactoe"
-          className="bg-gray-800 p-10 rounded-lg shadow-2xl group transform hover:-translate-y-2 transition-all duration-300 flex flex-col justify-center items-center md:col-span-2 lg:col-span-1"
+          className="bg-gray-800 p-10 rounded-lg shadow-2xl group transform hover:-translate-y-2 transition-all duration-300 flex flex-col justify-center items-center"
         >
            <div className="mb-4">
              <GameBoardIcon className="h-12 w-12 text-gray-500 group-hover:text-brand-green transition-colors duration-300" />
@@ -58,6 +58,23 @@ const MiniGamePortalPage: React.FC = () => {
             Drei in einer Reihe gewinnt. Fordere einen Freund heraus!
           </p>
         </Link>
+
+        {/* Card for Trick Randomizer Game */}
+        <Link
+          to="/minigames/randomizer"
+          className="bg-gray-800 p-10 rounded-lg shadow-2xl group transform hover:-translate-y-2 transition-all duration-300 flex flex-col justify-center items-center"
+        >
+           <div className="mb-4">
+             <DiceIcon className="h-12 w-12 text-gray-500 group-hover:text-brand-green transition-colors duration-300" />
+          </div>
+          <h2 className="text-3xl font-bold text-white mb-4 group-hover:text-brand-green transition-colors duration-300">
+            Trick Randomizer
+          </h2>
+          <p className="text-gray-400">
+            Lass die Würfel entscheiden und lerne neue Trick-Kombinationen.
+          </p>
+        </Link>
+
       </div>
     </div>
   );

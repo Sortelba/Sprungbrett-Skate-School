@@ -26,6 +26,7 @@ import SkateJumpGamePage from './pages/SkateJumpGamePage';
 import TicTacToeGamePage from './pages/TicTacToeGamePage';
 import DojoBeginnerPage from './pages/DojoBeginnerPage';
 import DojoAdvancedPage from './pages/DojoAdvancedPage';
+import TrickRandomizerPage from './pages/TrickRandomizerPage';
 
 
 const App: React.FC = () => {
@@ -60,6 +61,7 @@ const App: React.FC = () => {
             <Route path="/minigames/memory" element={<SkateMemoryGamePage />} />
             <Route path="/minigames/jump" element={<SkateJumpGamePage />} />
             <Route path="/minigames/tictactoe" element={<TicTacToeGamePage />} />
+            <Route path="/minigames/randomizer" element={<TrickRandomizerPage />} />
           </Routes>
         </main>
 
