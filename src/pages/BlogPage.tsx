@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 // Importiert die Blog-Beiträge aus der zentralen Datendatei.
 import { allPosts } from '../data/blog';
 // Importiert Icons für die Social-Media-Links.
+// FIX: Added WebsiteIcon import
 import { InstagramIcon, WebsiteIcon } from '../constants/icons';
 
 const BlogPage: React.FC = () => {

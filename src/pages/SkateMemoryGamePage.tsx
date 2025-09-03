@@ -7,6 +7,7 @@ import {
   SkaterIcon, HandIcon, FireIcon, SkullIcon, HeartIcon, LightningIcon,
   CardBackIcon,
 } from '../constants/icons';
+import { Link } from 'react-router-dom';
 
 // Definiert die Struktur einer einzelnen Spielkarte
 type Card = {
@@ -117,6 +118,11 @@ const SkateMemoryGamePage: React.FC = () => {
   if (gameState === 'selecting') {
     return (
       <div className="max-w-4xl mx-auto py-12 text-center animate-fade-in-up">
+        <div className="mb-8">
+            <Link to="/minigames" className="text-brand-green hover:underline transition-colors duration-200">
+            &larr; Zurück zur Spielauswahl
+            </Link>
+        </div>
         <h1 className="text-4xl font-black mb-4 tracking-tighter">SKATE <span className="text-brand-green">MEMORY</span></h1>
         <p className="text-lg text-gray-400 mb-8">Wähle einen Schwierigkeitsgrad</p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -145,7 +151,7 @@ const SkateMemoryGamePage: React.FC = () => {
           onClick={backToSelection}
           className="bg-brand-green text-gray-900 font-bold py-2 px-6 rounded-md hover:bg-white transition-all duration-300 transform hover:scale-105"
         >
-          Zurück zur Auswahl
+          Neues Spiel
         </button>
       </div>
       
@@ -155,7 +161,7 @@ const SkateMemoryGamePage: React.FC = () => {
           <p className="text-lg text-white">Super! Du hast das Spiel in {moves} Zügen geschafft.</p>
         </div>
       ) : (
-        <div className={`grid ${difficulties[difficulty].gridClass} gap-2 sm:gap-4`}>
+        <div className={`grid ${difficulties[difficulty].gridClass} gap-2 sm:gap-4 max-w-4xl mx-auto`}>
           {cards.map((card, index) => (
             <MemoryCard 
               key={card.id}

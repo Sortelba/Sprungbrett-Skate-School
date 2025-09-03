@@ -1,16 +1,10 @@
-// Diese Datei dient als zentrale Bibliothek für alle SVG-Icons, die in der Anwendung verwendet werden.
-// Das macht es einfach, Icons wiederzuverwenden und an einem Ort zu verwalten.
-// Um ein neues Icon hinzuzufügen, kopiere eine der bestehenden Komponenten,
-// benenne sie um und ersetze den SVG-Code im Inneren.
-
 import React from 'react';
 
-// Ein gemeinsames 'interface' für alle Icons, damit sie die gleichen Props (z.B. 'className') akzeptieren.
+// Props for all icon components
 interface IconProps {
   className?: string;
 }
 
-// --- TIKTOK ICON ---
 export const TikTokIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -22,13 +16,12 @@ export const TikTokIcon: React.FC<IconProps> = (props) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    {...props} // {...props} gibt alle übergebenen Props (wie className) an das SVG-Element weiter.
+    {...props}
   >
     <path d="M9 12a4 4 0 1 0 4 4v-12a5 5 0 0 0 5 5" />
   </svg>
 );
 
-// --- YOUTUBE ICON ---
 export const YouTubeIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +40,6 @@ export const YouTubeIcon: React.FC<IconProps> = (props) => (
   </svg>
 );
 
-// --- INSTAGRAM ICON ---
 export const InstagramIcon: React.FC<IconProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +59,6 @@ export const InstagramIcon: React.FC<IconProps> = (props) => (
   </svg>
 );
 
-// --- SHOP ICON (WARENKORB) ---
 export const ShopIcon: React.FC<IconProps> = (props) => (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
@@ -87,7 +78,6 @@ export const ShopIcon: React.FC<IconProps> = (props) => (
     </svg>
 );
 
-// --- LIFEBOY (LB) ICON (Text-basiertes SVG) ---
 export const LBIcon: React.FC<IconProps> = (props) => (
     <svg 
         viewBox="0 0 24 24" 
@@ -108,47 +98,6 @@ export const LBIcon: React.FC<IconProps> = (props) => (
         </text>
     </svg>
 );
-
-// --- WEBSITE ICON (LINK) ---
-export const WebsiteIcon: React.FC<IconProps> = (props) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72" />
-    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72" />
-  </svg>
-);
-
-// --- USER SEARCH ICON ---
-export const UserSearchIcon: React.FC<IconProps> = (props) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M18 18l-4.25-4.25" />
-    <circle cx="10" cy="10" r="7" />
-    <path d="M10 17a7 7 0 01-5.54-2.83" />
-    <path d="M10 3a7 7 0 015.54 2.83" />
-  </svg>
-);
-
 
 // --- ICONS FOR MEMORY GAME ---
 
@@ -342,24 +291,28 @@ export const LightningIcon: React.FC<IconProps> = (props) => (
   </svg>
 );
 
-// --- SKATER SIDE PROFILE ICON (for Skate Jump Game) ---
+// --- ADDED ICONS ---
+
+export const UserSearchIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" {...props}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+  </svg>
+);
+
+export const WebsiteIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 18 15.3 15.3 0 0 1-8 0 15.3 15.3 0 0 1 4-18z" />
+  </svg>
+);
+
 export const SkaterSideProfileIcon: React.FC<IconProps> = (props) => (
-    <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        {...props}
-    >
-        <circle cx="7" cy="6" r="2" />
-        <path d="M9 8h2l2 4 2 2h4" />
-        <path d="M9 8L7 12" />
-        <path d="M12 14v4" />
-        <path d="M6 20h12" />
-        <path d="M7 20c-1.5 0-2-1-2-2" />
-        <path d="M17 20c1.5 0 2-1 2-2" />
-    </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="12" cy="6" r="2" />
+    <path d="M12 8v6" />
+    <path d="M10 14h4" />
+    <path d="M8 22l-2-4h12l-2 4" />
+    <path d="M6 18h12" />
+  </svg>
 );

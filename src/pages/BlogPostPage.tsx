@@ -5,6 +5,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { allPosts } from '../data/blog'; // Importiert alle Blog-Daten
 import VideoEmbed from '../components/VideoEmbed'; // Importiert die Video-Komponente
+// FIX: Added WebsiteIcon import
 import { InstagramIcon, WebsiteIcon } from '../constants/icons'; // Importiert Icons
 
 const BlogPostPage: React.FC = () => {

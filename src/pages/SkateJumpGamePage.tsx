@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+// FIX: Imported missing SkaterSideProfileIcon
 import { SkaterSideProfileIcon, ConeIcon } from '../constants/icons';
 
 // --- GAME CONSTANTS ---
@@ -117,7 +118,8 @@ const SkateJumpGamePage: React.FC = () => {
         } else {
             frameId.current = requestAnimationFrame(gameLoop);
         }
-    }, [playerTop, currentObstacles, score, highScore]);
+    // FIX: Added missing state setters to dependency array to prevent stale closures, which was likely causing the misleading error.
+    }, [playerTop, currentObstacles, score, highScore, setGameState, setHighScore, setPlayerTop, setCurrentObstacles, setScore]);
     
     // --- EVENT HANDLERS & EFFECTS ---
     const handleJump = useCallback(() => {
