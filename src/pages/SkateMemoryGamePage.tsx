@@ -8,6 +8,8 @@ import {
   CardBackIcon,
 } from '../constants/icons';
 import { Link } from 'react-router-dom';
+// Importiert die neue, zentrale Sound-Funktion
+import { playSound } from '../utils/playSound';
 
 type Card = {
   id: number;
@@ -83,10 +85,8 @@ const SkateMemoryGamePage: React.FC = () => {
       
       // Prüft auf Gewinnbedingung
       if (newMatchedPairs.length === difficulties[difficulty].pairs) {
-        // Spielt den Sound nach einer kurzen Verzögerung ab, damit die letzte Karte sich umdrehen kann
-        setTimeout(() => {
-          new Audio('/sounds/gameover.mp3').play().catch(e => console.error("Win sound error:", e));
-        }, 500);
+        // Spielt den Gewinn-Sound sofort ab, um Probleme mit Browser-Richtlinien zu vermeiden.
+        playSound('/sounds/gameover.mp3');
       }
       
       setFlippedIndices([]);

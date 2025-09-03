@@ -6,6 +6,8 @@ import {
     CactusIcon,
     FlowerPotIcon,
 } from '../constants/icons';
+// Importiert die neue, zentrale Sound-Funktion
+import { playSound } from '../utils/playSound';
 
 // --- GAME CONSTANTS ---
 const GAME_WIDTH = 800;
@@ -37,19 +39,6 @@ type Obstacle = {
     scored: boolean; 
     typeIndex: number;
 };
-
-// --- SOUND HELPER FUNCTION ---
-// Diese Funktion erstellt bei jedem Aufruf ein neues Audio-Objekt und spielt es ab.
-// Das ist zuverlässiger als das Vorladen, besonders im Umgang mit Browser-Autoplay-Richtlinien.
-const playSound = (soundFile: string) => {
-    try {
-        const audio = new Audio(soundFile);
-        audio.play().catch(e => console.error(`Fehler beim Abspielen von ${soundFile}:`, e));
-    } catch (error) {
-        console.error(`Audio-Objekt für ${soundFile} konnte nicht erstellt werden:`, error);
-    }
-};
-
 
 const SkateJumpGamePage: React.FC = () => {
     // --- STATE MANAGEMENT ---

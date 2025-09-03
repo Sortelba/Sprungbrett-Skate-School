@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CrossedDecksIcon, SkateWheelIcon } from '../constants/icons';
+// Importiert die neue, zentrale Sound-Funktion
+import { playSound } from '../utils/playSound';
 
 type Player = 'X' | 'O';
 type SquareValue = Player | null;
@@ -72,9 +74,9 @@ const TicTacToeGamePage: React.FC = () => {
     const newWinner = calculateWinner(newBoard);
     const newIsTie = !newWinner && newBoard.every(Boolean);
 
-    // Spielt den Sound direkt hier ab, um die Browser-Autoplay-Richtlinie zu umgehen
+    // Spielt den Sound direkt hier ab, was zuverlässiger ist.
     if (newWinner || newIsTie) {
-        new Audio('/sounds/gameover.mp3').play().catch(e => console.error("Error playing game over sound:", e));
+        playSound('/sounds/gameover.mp3');
     }
   };
 
