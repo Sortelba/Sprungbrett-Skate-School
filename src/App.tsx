@@ -14,7 +14,7 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import TrainersPage from './pages/TrainersPage';
-import DojoPage from './pages/DojoPage';
+import DojoPage from './pages/D DojoPage';
 import TrainerDetailPage from './pages/TrainerDetailPage';
 import ImpressumPage from './pages/ImpressumPage';
 import AGBPage from './pages/AGBPage';
@@ -35,6 +35,7 @@ import audioManager from './utils/audioManager';
 const App: React.FC = () => {
   // Dieser useEffect-Hook wird einmalig beim Start der App ausgeführt.
   // Er richtet einen Mechanismus ein, um das Audio-System durch die erste Benutzerinteraktion zu "entsperren".
+  // Dies ist entscheidend, um die Autoplay-Richtlinien moderner Browser zu erfüllen.
   useEffect(() => {
     const unlockAudio = () => {
       audioManager.init(); // Initialisiert den AudioContext des Managers.

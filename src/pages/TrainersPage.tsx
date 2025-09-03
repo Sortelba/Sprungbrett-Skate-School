@@ -78,7 +78,7 @@ const TrainersPage: React.FC = () => {
                 <img
                   src={trainer.imageUrl}
                   alt={trainer.name}
-                  className="w-full h-64 object-cover"
+                  className="w-full aspect-square object-cover"
                 />
                 {/* --- INSTAGRAM-ICON --- */}
                 {/* Wird nur angezeigt, wenn eine 'instagramUrl' im Trainer-Objekt vorhanden ist. */}

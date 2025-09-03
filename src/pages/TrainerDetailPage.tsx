@@ -47,7 +47,7 @@ const TrainerDetailPage: React.FC = () => {
           <img 
             src={trainer.imageUrl} 
             alt={trainer.name} 
-            className="rounded-lg w-full object-cover border-4 border-gray-700"
+            className="rounded-lg w-full aspect-square object-cover border-4 border-gray-700"
           />
         </div>
         

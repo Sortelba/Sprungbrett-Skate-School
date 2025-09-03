@@ -17,7 +17,7 @@ const AboutPage: React.FC = () => {
           {/* Hier kannst du dein Profilbild ändern. */}
           {/* Lege das Bild im Ordner 'public/images' ab und ändere den 'src'-Pfad entsprechend. */}
           <img 
-            src="/images/steffen-profile.jpg" 
+            src="/images/about.jpeg" 
             alt="Instructor Steffen performing a skateboard trick" 
             className="rounded-lg w-full h-auto object-cover border-4 border-brand-green shadow-lg"
           />
