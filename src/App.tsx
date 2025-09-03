@@ -18,9 +18,14 @@ import DojoPage from './pages/DojoPage';
 import TrainerDetailPage from './pages/TrainerDetailPage';
 import ImpressumPage from './pages/ImpressumPage';
 import AGBPage from './pages/AGBPage';
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
 import MiniGamePortalPage from './pages/MiniGamePortalPage';
 import SkateMemoryGamePage from './pages/SkateMemoryGamePage';
 import SkateJumpGamePage from './pages/SkateJumpGamePage';
+import TicTacToeGamePage from './pages/TicTacToeGamePage';
+import DojoBeginnerPage from './pages/DojoBeginnerPage';
+import DojoAdvancedPage from './pages/DojoAdvancedPage';
 
 
 const App: React.FC = () => {
@@ -44,12 +49,17 @@ const App: React.FC = () => {
             {/* Die Route für die Trainer-Detailseite enthält einen dynamischen Teil ':trainerId'. */}
             <Route path="/trainers/:trainerId" element={<TrainerDetailPage />} />
             <Route path="/dojo" element={<DojoPage />} />
+            <Route path="/dojo/beginner" element={<DojoBeginnerPage />} />
+            <Route path="/dojo/advanced" element={<DojoAdvancedPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogPostPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/impressum" element={<ImpressumPage />} />
             <Route path="/agb" element={<AGBPage />} />
             <Route path="/minigames" element={<MiniGamePortalPage />} />
             <Route path="/minigames/memory" element={<SkateMemoryGamePage />} />
             <Route path="/minigames/jump" element={<SkateJumpGamePage />} />
+            <Route path="/minigames/tictactoe" element={<TicTacToeGamePage />} />
           </Routes>
         </main>
 

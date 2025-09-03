@@ -320,27 +320,49 @@ export const SkaterSideProfileIcon: React.FC<IconProps> = (props) => (
 // --- NEW OBSTACLE ICONS ---
 export const TrashCanIcon: React.FC<IconProps> = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-        <path d="M4 6h16" />
-        <path d="M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14" />
-        <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
+        <path d="M3 6h18" />
+        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
     </svg>
 );
 
 export const CactusIcon: React.FC<IconProps> = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-        <path d="M12 2v20" />
-        <path d="M12 12h6a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-6" />
-        <path d="M12 12H6a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h6" />
-        <path d="M18 22V10" />
-        <path d="M6 22V10" />
+        <path d="M18 8c0-3.3-2.7-6-6-6S6 4.7 6 8v14h12V8z" />
+        <path d="M6 8h12" />
+        <path d="M9 8V5" />
+        <path d="M15 8V5" />
     </svg>
 );
 
 export const FlowerPotIcon: React.FC<IconProps> = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-        <path d="M6 4h12" />
-        <path d="M8 4l-2 16h12l-2-16" />
-        <path d="M12 12v8" />
-        <path d="M10 8h4" />
+        <path d="M12 2v4" />
+        <path d="M10 6h4" />
+        <path d="M12 14v8" />
+        <path d="M8 22h8" />
+        <path d="M6 14h12L12 6 6 14z" />
     </svg>
+);
+
+// --- TIC-TAC-TOE ICONS ---
+export const GameBoardIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M3 3h18v18H3z" />
+    <path d="M3 9h18" />
+    <path d="M3 15h18" />
+    <path d="M9 3v18" />
+    <path d="M15 3v18" />
+  </svg>
+);
+
+export const CrossedDecksIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M6 18L18 6M6 6l12 12" />
+  </svg>
+);
+
+export const SkateWheelIcon: React.FC<IconProps> = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="12" cy="12" r="8" />
+  </svg>
 );
