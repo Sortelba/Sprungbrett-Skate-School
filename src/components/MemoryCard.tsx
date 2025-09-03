@@ -11,8 +11,11 @@ interface MemoryCardProps {
 
 const MemoryCard: React.FC<MemoryCardProps> = ({ icon: Icon, isFlipped, isMatched, onClick, CardBackIcon }) => {
   // --- Inline Styles for 3D Transform ---
-  // We use inline styles here to ensure the 3D flip effect works reliably,
-  // as some transform utility classes might not be available in all Tailwind setups (e.g., Play CDN).
+  // The `perspective` property is crucial for establishing a 3D space.
+  const containerStyles: React.CSSProperties = {
+    perspective: '1000px',
+  };
+
   const cardStyles: React.CSSProperties = {
     transformStyle: 'preserve-3d',
     transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
@@ -29,8 +32,12 @@ const MemoryCard: React.FC<MemoryCardProps> = ({ icon: Icon, isFlipped, isMatche
   };
 
   return (
-    // Der äußere Container fängt Klicks ab und definiert den Platz der Karte im Grid
-    <div className="aspect-square cursor-pointer group" onClick={!isFlipped && !isMatched ? onClick : undefined}>
+    // Der äußere Container fängt Klicks ab und etabliert den 3D-Raum
+    <div 
+      className="aspect-square cursor-pointer group" 
+      style={containerStyles} 
+      onClick={!isFlipped && !isMatched ? onClick : undefined}
+    >
       {/* Dieser Container ist für die 3D-Animation zuständig */}
       <div 
         className="relative w-full h-full transition-transform duration-500 transform-gpu"
