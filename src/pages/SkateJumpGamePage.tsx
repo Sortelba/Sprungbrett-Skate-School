@@ -19,10 +19,10 @@ const PLAYER_HEIGHT = 60;
 const PLAYER_X = 50;
 
 // --- DIFFICULTY ADJUSTMENTS ---
-// Lower initial speed for a gentler start.
-const INITIAL_SPEED = 4; 
-const MAX_SPEED = INITIAL_SPEED * 1.5; // Increased max speed slightly for better late-game scaling
-const SPEED_INCREMENT = INITIAL_SPEED * 0.05; 
+// Initial speed is set to 1 for a very easy start. Speed increases in clear steps.
+const INITIAL_SPEED = 1; 
+const MAX_SPEED = 5; 
+const SPEED_INCREMENT = 1; // Speed increases by 1 level at each threshold
 const SCORE_THRESHOLD = 150;
 
 // --- OBSTACLE TYPES ---
@@ -72,7 +72,7 @@ const SkateJumpGamePage: React.FC = () => {
         playerVelocityY.current = 0;
         setCurrentObstacles([]);
         gameSpeed.current = INITIAL_SPEED;
-        obstacleTimer.current = 120; // Increased initial delay for the first obstacle.
+        obstacleTimer.current = 120; // Initial delay for the first obstacle.
         setScore(0);
         setGameState('playing');
     }, []);
@@ -97,9 +97,9 @@ const SkateJumpGamePage: React.FC = () => {
             const typeIndex = Math.floor(Math.random() * obstacleTypes.length);
             newObstacles.push({ x: GAME_WIDTH, scored: false, typeIndex: typeIndex });
             
-            // Increased the interval between obstacles for easier gameplay.
-            const baseInterval = 180 / gameSpeed.current; 
-            const randomInterval = Math.random() * 100 / gameSpeed.current;
+            // The interval between obstacles. A larger base value means more space.
+            const baseInterval = 220 / gameSpeed.current; 
+            const randomInterval = Math.random() * 120 / gameSpeed.current;
             obstacleTimer.current = baseInterval + randomInterval;
         }
 
@@ -138,10 +138,13 @@ const SkateJumpGamePage: React.FC = () => {
             setScore(newScore);
             // Play scoring sound effect
             scoreSound.current.currentTime = 0; // Rewind to start to allow rapid playing
-            scoreSound.current.play();
+            scoreSound.current.play().catch(e => console.error("Error playing score sound:", e));
 
-            if (gameSpeed.current < MAX_SPEED && Math.floor(newScore / SCORE_THRESHOLD) > Math.floor(score / SCORE_THRESHOLD)) {
-                gameSpeed.current = Math.min(MAX_SPEED, gameSpeed.current + SPEED_INCREMENT);
+            // Check if a score threshold is crossed to increase speed
+            const oldLevel = Math.floor(score / SCORE_THRESHOLD);
+            const newLevel = Math.floor(newScore / SCORE_THRESHOLD);
+            if (newLevel > oldLevel) {
+                 gameSpeed.current = Math.min(MAX_SPEED, INITIAL_SPEED + (newLevel * SPEED_INCREMENT));
             }
         }
         
@@ -149,7 +152,7 @@ const SkateJumpGamePage: React.FC = () => {
         if (collisionDetected) {
             setGameState('gameOver');
             // Play game over sound effect
-            gameOverSound.current.play();
+            gameOverSound.current.play().catch(e => console.error("Error playing game over sound:", e));
             if (newScore > highScore) {
                 setHighScore(newScore);
                 localStorage.setItem('skateJumpHighScore', String(newScore));
@@ -157,17 +160,17 @@ const SkateJumpGamePage: React.FC = () => {
         } else {
             frameId.current = requestAnimationFrame(gameLoop);
         }
-    }, [playerTop, currentObstacles, score, highScore]);
+    }, [playerTop, currentObstacles, score, highScore, resetGame]);
     
     // --- EVENT HANDLERS & EFFECTS ---
     const handleJump = useCallback(() => {
         if (gameState === 'waiting') {
             resetGame();
-        } else if (gameState === 'playing' && playerTop >= GROUND_Y - PLAYER_HEIGHT) {
+        } else if (gameState === 'playing' && playerTop >= GROUND_Y - PLAYER_HEIGHT - 1) { // -1 allows for small floating point inaccuracies
             playerVelocityY.current = JUMP_FORCE;
             // Play jump sound effect
             jumpSound.current.currentTime = 0; // Rewind to start for quick jumps
-            jumpSound.current.play();
+            jumpSound.current.play().catch(e => console.error("Error playing jump sound:", e));
         }
     }, [gameState, resetGame, playerTop]);
 
