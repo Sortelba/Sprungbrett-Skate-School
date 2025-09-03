@@ -1,7 +1,7 @@
 // Dies ist die Hauptkomponente der Anwendung. Sie baut die grundlegende Seitenstruktur
 // (Header, Hauptinhalt, Footer) auf und steuert, welche Seite bei welcher URL angezeigt wird.
 
-import React from 'react';
+import React, { useEffect } from 'react';
 // HashRouter wird für das "Routing" verwendet, also das Navigieren zwischen den Seiten.
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
@@ -28,8 +28,33 @@ import DojoBeginnerPage from './pages/DojoBeginnerPage';
 import DojoAdvancedPage from './pages/DojoAdvancedPage';
 import TrickRandomizerPage from './pages/TrickRandomizerPage';
 
+// Importiert die Initialisierungsfunktion für das neue, robuste Audio-System.
+import { initAudio } from './utils/playSound';
+
 
 const App: React.FC = () => {
+
+  // Dieser Effekt fügt einen einmaligen Event-Listener hinzu, um das Audio-System freizuschalten.
+  // Dies ist für moderne Browser, die Audio bis zu einer Benutzerinteraktion blockieren, unerlässlich.
+  useEffect(() => {
+    const unlockAudio = () => {
+      initAudio();
+      // Entfernt die Listener nach dem ersten Auslösen, damit sie nicht unnötig weiterlaufen.
+      window.removeEventListener('click', unlockAudio);
+      window.removeEventListener('keydown', unlockAudio);
+    };
+
+    window.addEventListener('click', unlockAudio);
+    window.addEventListener('keydown', unlockAudio);
+
+    // Aufräumfunktion, die die Listener entfernt, wenn die Komponente de-initialisiert wird.
+    return () => {
+      window.removeEventListener('click', unlockAudio);
+      window.removeEventListener('keydown', unlockAudio);
+    };
+  }, []); // Das leere Array stellt sicher, dass dieser Effekt nur einmal beim Start der App ausgeführt wird.
+
+
   return (
     // Der HashRouter umschließt die gesamte Anwendung, um das Routing zu ermöglichen.
     <HashRouter>
