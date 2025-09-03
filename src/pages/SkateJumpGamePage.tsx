@@ -142,6 +142,8 @@ const SkateJumpGamePage: React.FC = () => {
             resetGame();
         } else if (gameState === 'playing' && playerTop >= GROUND_Y - PLAYER_HEIGHT - 1) {
             playerVelocityY.current = JUMP_FORCE;
+            // --- SOUND: JUMP ---
+            audioManager.playSound('/sounds/jump.mp3');
         }
     }, [gameState, resetGame, playerTop]);
 
