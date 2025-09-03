@@ -20,6 +20,7 @@ import ImpressumPage from './pages/ImpressumPage';
 import AGBPage from './pages/AGBPage';
 import MiniGamePortalPage from './pages/MiniGamePortalPage';
 import SkateMemoryGamePage from './pages/SkateMemoryGamePage';
+import SkateJumpGamePage from './pages/SkateJumpGamePage';
 
 
 const App: React.FC = () => {
@@ -48,6 +49,7 @@ const App: React.FC = () => {
             <Route path="/agb" element={<AGBPage />} />
             <Route path="/minigames" element={<MiniGamePortalPage />} />
             <Route path="/minigames/memory" element={<SkateMemoryGamePage />} />
+            <Route path="/minigames/jump" element={<SkateJumpGamePage />} />
           </Routes>
         </main>
 

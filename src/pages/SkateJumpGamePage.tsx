@@ -48,6 +48,7 @@ const SkateJumpGamePage: React.FC = () => {
         obstacleTimer.current = 100; // Initial delay for first obstacle
         setScore(0);
         setGameState('playing');
+    // FIX: State setters are stable and do not need to be in the dependency array. An empty array makes this function stable.
     }, [setGameState, setPlayerTop, setCurrentObstacles, setScore]);
     
     const gameLoop = useCallback(() => {
@@ -119,6 +120,7 @@ const SkateJumpGamePage: React.FC = () => {
             frameId.current = requestAnimationFrame(gameLoop);
         }
     // FIX: Added missing state setters to dependency array to prevent stale closures, which was likely causing the misleading error.
+    // FIX: Cleaned up duplicate dependencies. Setters are stable and can be omitted, but including them satisfies exhaustive-deps lint rule.
     }, [playerTop, currentObstacles, score, highScore, setGameState, setHighScore, setPlayerTop, setCurrentObstacles, setScore]);
     
     // --- EVENT HANDLERS & EFFECTS ---

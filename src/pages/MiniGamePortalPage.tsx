@@ -27,23 +27,21 @@ const MiniGamePortalPage: React.FC = () => {
           </p>
         </Link>
 
-        {/* Placeholder for future game */}
-        <div
-          className="bg-gray-800 p-10 rounded-lg shadow-2xl group flex flex-col justify-center items-center relative opacity-50"
+        {/* Card for Skate Jump Game */}
+        <Link
+          to="/minigames/jump"
+          className="bg-gray-800 p-10 rounded-lg shadow-2xl group transform hover:-translate-y-2 transition-all duration-300 flex flex-col justify-center items-center"
         >
-           <div className="absolute top-4 right-4 bg-yellow-500 text-gray-900 text-xs font-bold px-2 py-1 rounded-full">
-             Coming Soon
-           </div>
            <div className="mb-4">
-             <LightningIcon className="h-12 w-12 text-gray-500" />
+             <LightningIcon className="h-12 w-12 text-gray-500 group-hover:text-brand-green transition-colors duration-300" />
           </div>
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-3xl font-bold text-white mb-4 group-hover:text-brand-green transition-colors duration-300">
             Skate Jump
           </h2>
           <p className="text-gray-400">
             Springe über Hindernisse und erreiche den Highscore!
           </p>
-        </div>
+        </Link>
       </div>
     </div>
   );
