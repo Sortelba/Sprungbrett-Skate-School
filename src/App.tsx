@@ -14,7 +14,7 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import TrainersPage from './pages/TrainersPage';
-import DojoPage from './pages/D DojoPage';
+import DojoPage from './pages/DojoPage';
 import TrainerDetailPage from './pages/TrainerDetailPage';
 import ImpressumPage from './pages/ImpressumPage';
 import AGBPage from './pages/AGBPage';
