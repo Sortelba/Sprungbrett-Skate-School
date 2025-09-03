@@ -6,8 +6,8 @@ import {
     CactusIcon,
     FlowerPotIcon,
 } from '../constants/icons';
-// Importiert die zentrale Sound-Funktion
-import { playSound } from '../utils/playSound';
+// Importiert den neuen, zentralen Audio Manager
+import audioManager from '../utils/audioManager';
 
 // --- GAME CONSTANTS ---
 const GAME_WIDTH = 800;
@@ -116,7 +116,7 @@ const SkateJumpGamePage: React.FC = () => {
         if (newScore > score) {
             setScore(newScore);
             // --- SOUND: SCORE ---
-            playSound('/sounds/score.mp3');
+            audioManager.playSound('/sounds/score.mp3');
 
             const oldLevel = Math.floor(score / SCORE_THRESHOLD);
             const newLevel = Math.floor(newScore / SCORE_THRESHOLD);
@@ -128,7 +128,7 @@ const SkateJumpGamePage: React.FC = () => {
         if (collisionDetected) {
             setGameState('gameOver');
             // --- SOUND: GAME OVER ---
-            playSound('/sounds/gameover.mp3');
+            audioManager.playSound('/sounds/gameover.mp3');
             if (newScore > highScore) {
                 setHighScore(newScore);
                 localStorage.setItem('skateJumpHighScore', String(newScore));
@@ -145,7 +145,7 @@ const SkateJumpGamePage: React.FC = () => {
         } else if (gameState === 'playing' && playerTop >= GROUND_Y - PLAYER_HEIGHT - 1) {
             playerVelocityY.current = JUMP_FORCE;
             // --- SOUND: JUMP ---
-            playSound('/sounds/jump.mp3');
+            audioManager.playSound('/sounds/jump.mp3');
         }
     }, [gameState, resetGame, playerTop]);
 

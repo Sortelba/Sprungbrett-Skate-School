@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CrossedDecksIcon, SkateWheelIcon } from '../constants/icons';
-// Importiert die zentrale Sound-Funktion
-import { playSound } from '../utils/playSound';
+// Importiert den neuen, zentralen Audio Manager
+import audioManager from '../utils/audioManager';
 
 type Player = 'X' | 'O';
 type SquareValue = Player | null;
@@ -75,9 +75,8 @@ const TicTacToeGamePage: React.FC = () => {
     const newIsTie = !newWinner && newBoard.every(Boolean);
 
     // --- SOUND: GAME OVER ---
-    // Spielt den Sound direkt hier ab, was zuverlässiger ist.
     if (newWinner || newIsTie) {
-        playSound('/sounds/gameover.mp3');
+        audioManager.playSound('/sounds/gameover.mp3');
     }
   };
 

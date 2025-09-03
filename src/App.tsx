@@ -1,7 +1,7 @@
 // Dies ist die Hauptkomponente der Anwendung. Sie baut die grundlegende Seitenstruktur
 // (Header, Hauptinhalt, Footer) auf und steuert, welche Seite bei welcher URL angezeigt wird.
 
-import React from 'react';
+import React, { useEffect } from 'react';
 // HashRouter wird für das "Routing" verwendet, also das Navigieren zwischen den Seiten.
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
@@ -28,8 +28,35 @@ import DojoBeginnerPage from './pages/DojoBeginnerPage';
 import DojoAdvancedPage from './pages/DojoAdvancedPage';
 import TrickRandomizerPage from './pages/TrickRandomizerPage';
 
+// Importiert den neuen, zentralen Audio Manager
+import audioManager from './utils/audioManager';
+
 
 const App: React.FC = () => {
+  // Dieser useEffect-Hook wird einmalig beim Start der App ausgeführt.
+  // Er richtet einen Mechanismus ein, um das Audio-System durch die erste Benutzerinteraktion zu "entsperren".
+  useEffect(() => {
+    const unlockAudio = () => {
+      audioManager.init(); // Initialisiert den AudioContext des Managers.
+      // Entfernt die Event-Listener nach der ersten Ausführung, da sie nur einmal benötigt werden.
+      window.removeEventListener('click', unlockAudio);
+      window.removeEventListener('keydown', unlockAudio);
+      window.removeEventListener('touchstart', unlockAudio);
+    };
+
+    // Fügt Event-Listener hinzu, die auf die erste Interaktion des Benutzers warten.
+    window.addEventListener('click', unlockAudio);
+    window.addEventListener('keydown', unlockAudio);
+    window.addEventListener('touchstart', unlockAudio);
+
+    // Aufräumfunktion: Entfernt die Listener, falls die Komponente verlassen wird, bevor eine Interaktion stattfand.
+    return () => {
+      window.removeEventListener('click', unlockAudio);
+      window.removeEventListener('keydown', unlockAudio);
+      window.removeEventListener('touchstart', unlockAudio);
+    };
+  }, []); // Das leere Array stellt sicher, dass der Hook nur einmal ausgeführt wird.
+
   return (
     // Der HashRouter umschließt die gesamte Anwendung, um das Routing zu ermöglichen.
     <HashRouter>
