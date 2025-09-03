@@ -57,13 +57,14 @@ const SkateJumpGamePage: React.FC = () => {
     const obstacleTimer = useRef(0);
     const frameId = useRef<number | null>(null);
 
-    // --- SOUND EFFECTS ---
-    // Refs to hold the Audio objects. This prevents them from being re-created on every render.
-    // HINWEIS: Du musst Sound-Dateien (z.B. jump.wav, score.wav, gameover.wav) 
-    // im Ordner 'public/sounds/' ablegen, damit diese funktionieren.
-    const jumpSound = useRef(new Audio('/sounds/jump.wav'));
-    const scoreSound = useRef(new Audio('/sounds/score.wav'));
-    const gameOverSound = useRef(new Audio('/sounds/gameover.wav'));
+    // --- SOUND EFFEKTE ---
+    // Die folgenden Zeilen laden die Sound-Dateien.
+    // Damit dies funktioniert, musst du einen Ordner `public/sounds` erstellen
+    // und darin die Dateien `jump.mp3`, `score.mp3` und `gameover.mp3` ablegen.
+    
+    const jumpSound = useRef(new Audio('/sounds/jump.mp3'));
+    const scoreSound = useRef(new Audio('/sounds/score.mp3'));
+    const gameOverSound = useRef(new Audio('/sounds/gameover.mp3'));
 
 
     // --- GAME LOGIC ---
