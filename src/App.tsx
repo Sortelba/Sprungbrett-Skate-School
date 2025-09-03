@@ -23,6 +23,8 @@ import DojoAdvancedPage from './pages/DojoAdvancedPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import SkateMemoryGamePage from './pages/SkateMemoryGamePage';
+import MiniGamePortalPage from './pages/MiniGamePortalPage';
+import SkateJumpGamePage from './pages/SkateJumpGamePage';
 
 const App: React.FC = () => {
   return (
@@ -53,7 +55,11 @@ const App: React.FC = () => {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/impressum" element={<ImpressumPage />} />
             <Route path="/agb" element={<AGBPage />} />
-            <Route path="/game" element={<SkateMemoryGamePage />} />
+
+            {/* --- MINI GAMES ROUTES --- */}
+            <Route path="/minigames" element={<MiniGamePortalPage />} />
+            <Route path="/minigames/memory" element={<SkateMemoryGamePage />} />
+            <Route path="/minigames/skate-jump" element={<SkateJumpGamePage />} />
           </Routes>
         </main>
 

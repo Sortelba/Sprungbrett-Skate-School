@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
                {/* Links zu den rechtlichen Seiten */}
                <Link to="/impressum" className="text-gray-400 hover:text-brand-green transition-colors duration-200">Impressum</Link>
                <Link to="/agb" className="text-gray-400 hover:text-brand-green transition-colors duration-200">AGB</Link>
-               <Link to="/game" className="text-gray-400 hover:text-brand-green transition-colors duration-200">MiniGame</Link>
+               <Link to="/minigames" className="text-gray-400 hover:text-brand-green transition-colors duration-200">MiniGame</Link>
             </div>
           </div>
           

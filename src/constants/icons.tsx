@@ -341,3 +341,25 @@ export const LightningIcon: React.FC<IconProps> = (props) => (
     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
   </svg>
 );
+
+// --- SKATER SIDE PROFILE ICON (for Skate Jump Game) ---
+export const SkaterSideProfileIcon: React.FC<IconProps> = (props) => (
+    <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="1.5" 
+        strokeLinecap="round" 
+        strokeLinejoin="round" 
+        {...props}
+    >
+        <circle cx="7" cy="6" r="2" />
+        <path d="M9 8h2l2 4 2 2h4" />
+        <path d="M9 8L7 12" />
+        <path d="M12 14v4" />
+        <path d="M6 20h12" />
+        <path d="M7 20c-1.5 0-2-1-2-2" />
+        <path d="M17 20c1.5 0 2-1 2-2" />
+    </svg>
+);
